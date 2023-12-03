@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import logo from './logo.png';
+import logo from '../pages/HomePage/logo.png';
 
 const navigation = [
 	{ name: 'Home', href: '#' },

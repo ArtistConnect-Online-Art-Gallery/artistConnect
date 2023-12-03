@@ -1,6 +1,6 @@
-import Header from './Header';
-import Footer from './Footer';
-import ArtworksCard from '../ArtworksCard/ArtworksCard';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import ArtworksCard from '../../components/ArtworksCard';
 
 export default function LandingPage() {
 	return (
