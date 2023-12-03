@@ -49,7 +49,7 @@ export default function ArtworksCard() {
 						<div key={artwork.id} className="group relative">
 							<img src={artwork.imageSrc} alt={artwork.imageAlt} className="w-full h-60 object-cover rounded-lg" />
 							<div className="absolute top-0 right-0 mt-2 mr-2">
-								<button className="border border-gray-300 rounded p-1">
+								<button className="border border-gray-300 hover:text-yellow-500 rounded p-1">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
@@ -73,18 +73,8 @@ export default function ArtworksCard() {
 								</div>
 
 								<div className="flex justify-between mt-2">
-									<button className="text-gray-600 hover:text-red-600 focus:outline-none">
-										{/* Report Icon */}
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											className="h-6 w-6 stroke-current"
-											viewBox="0 0 20 20"
-											fill="currentColor">
-											{/* Add your report icon SVG here */}
-										</svg>
-									</button>
 									<div className="flex space-x-4">
-										<button className="flex items-center space-x-1 text-gray-600 hover:text-red-600 focus:outline-none">
+										<button className="flex items-center space-x-1 text-gray-600 hover:text-red-400 focus:outline-none">
 											{/* Like Icon */}
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +90,7 @@ export default function ArtworksCard() {
 												/>
 											</svg>
 										</button>
-										<button className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 focus:outline-none">
+										<button className="flex items-center space-x-1 text-gray-600 hover:text-blue-400 focus:outline-none">
 											{/* Comment Icon */}
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
