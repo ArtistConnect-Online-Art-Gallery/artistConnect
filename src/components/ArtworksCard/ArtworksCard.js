@@ -49,7 +49,7 @@ export default function ArtworksCard() {
 						<div key={artwork.id} className="group relative">
 							<img src={artwork.imageSrc} alt={artwork.imageAlt} className="w-full h-60 object-cover rounded-lg" />
 							<div className="absolute top-0 right-0 mt-2 mr-2">
-								<button className="border border-gray-300 hover:text-yellow-500 rounded p-1">
+								<button className="border border-gray-300 rounded p-1">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
