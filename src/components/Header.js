@@ -5,8 +5,8 @@ import logo from '../pages/HomePage/logo.png';
 import { Link } from 'react-router-dom';
 
 const navigation = [
-	{ name: 'home', to: '/' },
-	{ name: 'explore', to: '/explore' },
+	{ name: 'Home', to: '/' },
+	{ name: 'Explore', to: '/explore' },
 ];
 
 export default function Header() {
