@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../pages/HomePage/logo.png';
+import { Link } from 'react-router-dom';
 
 const navigation = [
-	{ name: 'Home', href: '#' },
-	{ name: 'Explore', href: '#' },
+	{ name: 'home', to: '/' },
+	{ name: 'explore', to: '/explore' },
 ];
 
 export default function Header() {
@@ -15,15 +16,14 @@ export default function Header() {
 		<header className="bg-black">
 			<nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-1" aria-label="Global">
 				<div className="flex items-center gap-x-12">
-					<a href="#" className="-m-1.5 p-1.5">
-						<span className="sr-only">Your Company</span>
+					<Link to="/" className="-m-1.5 p-1.5">
 						<img className="h-7 w-auto" src={logo} alt="logo" />
-					</a>
+					</Link>
 					<div className="hidden lg:flex lg:gap-x-12">
 						{navigation.map((item) => (
-							<a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
+							<Link key={item.name} to={item.to} className="text-sm font-semibold leading-6 text-white">
 								{item.name}
-							</a>
+							</Link>
 						))}
 					</div>
 				</div>
@@ -37,19 +37,19 @@ export default function Header() {
 					</button>
 				</div>
 				<div className="hidden lg:flex">
-					<a href="#" className="text-sm font-semibold leading-6 text-white">
+					<Link to="/login" className="text-sm font-semibold leading-6 text-white">
 						Log in <span aria-hidden="true">&rarr;</span>
-					</a>
+					</Link>
 				</div>
 			</nav>
 			<Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
 				<div className="fixed inset-0 z-10" />
 				<Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 					<div className="flex items-center justify-between">
-						<a href="#" className="-m-1.5 p-1.5">
-							<span className="sr-only">Your Company</span>
+						<Link to="/" className="-m-1.5 p-1.5">
+							<span className="sr-only">ArtistConnect</span>
 							<img className="h-8 w-auto" src={logo} alt="" />
-						</a>
+						</Link>
 						<button
 							type="button"
 							className="-m-2.5 rounded-md p-2.5 text-white"
@@ -62,20 +62,20 @@ export default function Header() {
 						<div className="-my-6 divide-y divide-gray-500/10">
 							<div className="space-y-2 py-6">
 								{navigation.map((item) => (
-									<a
+									<Link
 										key={item.name}
-										href={item.href}
+										to={item.to}
 										className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">
 										{item.name}
-									</a>
+									</Link>
 								))}
 							</div>
 							<div className="py-6">
-								<a
-									href="#"
+								<Link
+									to="/login"
 									className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">
 									Log in
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>

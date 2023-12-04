@@ -1,6 +1,7 @@
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ArtworksCard from '../../components/ArtworksCard';
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
 	return (
@@ -31,10 +32,10 @@ export default function LandingPage() {
 							<div className="hidden sm:mb-8 sm:flex sm:justify-center">
 								<div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
 									Explore the fantastic works.{' '}
-									<a href="#" className="font-semibold text-white">
+									<Link to="/explore" className="font-semibold text-white">
 										<span className="absolute inset-0" aria-hidden="true" />
 										Explore more <span aria-hidden="true">&rarr;</span>
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div className="text-center">
