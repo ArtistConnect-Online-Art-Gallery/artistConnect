@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import CommentPopup from './CommentPopup';
+
 const artworks = [
 	{
 		id: 1,
@@ -39,6 +42,18 @@ const artworks = [
 ];
 
 export default function ArtworksCard() {
+	const [showPopup, setShowPopup] = useState(false);
+
+	// when user click comment button - open the popup
+	const openPopup = () => {
+		setShowPopup(true);
+	};
+
+	//when user click send button or delete button -close the popup
+	const closePopup = () => {
+		setShowPopup(false);
+	};
+
 	return (
 		<div className="bg-white">
 			<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -90,7 +105,9 @@ export default function ArtworksCard() {
 												/>
 											</svg>
 										</button>
-										<button className="flex items-center space-x-1 text-gray-600 hover:text-sky-500 focus:outline-none">
+										<button
+											onClick={openPopup}
+											className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
 											{/* Comment Icon */}
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
@@ -106,6 +123,7 @@ export default function ArtworksCard() {
 												/>
 											</svg>
 										</button>
+										{showPopup && <CommentPopup onClose={closePopup} />}
 									</div>
 								</div>
 							</div>
