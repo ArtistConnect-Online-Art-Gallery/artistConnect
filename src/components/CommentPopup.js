@@ -27,8 +27,8 @@ export default function CommentPopup({ onClose }) {
 								rows={12}
 								name="comment"
 								id="comment"
-								className="block w-full resize-none border-0 bg-transparent py-1.5 text-large text-gray-900 placeholder:text-gray-500 focus:ring-0 sm:text-sm sm:leading-6 indent-2"
-								placeholder="&nbsp;Add your comment..."
+								className="block w-full resize-none border-0 py-1.5 text-large bg-transparent placeholder:text-gray-800 focus:ring-0 sm:text-sm sm:leading-6 indent-2"
+								placeholder="Add your comment..."
 								defaultValue={''}
 							/>
 
