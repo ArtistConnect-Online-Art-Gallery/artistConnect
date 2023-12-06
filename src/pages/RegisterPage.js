@@ -110,7 +110,7 @@ export default function Login() {
 							/>
 						</div>
 						<div className=" font-semibold leading-6 ml-3 text-sm ">
-							<label for="terms" className="font-light text-gray-500 dark:text-gray-300 mt-3">
+							<label for="terms" className="text-sm text-gray-500 dark:text-gray-300 mt-3">
 								I accept the{' '}
 								<Link class="font-medium text-primary-600 hover:underline dark:text-primary-500" to="#">
 									Terms and Conditions
@@ -119,7 +119,7 @@ export default function Login() {
 						</div>
 					</div>
 					<div className=" flex items-start ">
-						<p className="text-sm font-light text-gray-500 dark:text-gray-400">
+						<p className="text-sm  text-gray-500 ">
 							Already have an account?{' '}
 							<Link to="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
 								Login here
