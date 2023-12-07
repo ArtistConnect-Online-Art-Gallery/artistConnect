@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CommentPopup from './CommentPopup';
+import { HeartIcon, ChatBubbleOvalLeftEllipsisIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
 const artworks = [
 	{
@@ -65,19 +66,7 @@ export default function ArtworksCard() {
 							<img src={artwork.imageSrc} alt={artwork.imageAlt} className="w-full h-60 object-cover rounded-lg" />
 							<div className="absolute top-0 right-0 mt-2 mr-2">
 								<button className="border border-gray-500 rounded p-1">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke-width="1.5"
-										stroke="currentColor"
-										class="w-6 h-6">
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-										/>
-									</svg>
+									<ExclamationTriangleIcon className="w-6 h-6 text-gray-500" />
 								</button>
 							</div>
 							<div className="bg-white bg-opacity-80 p-4 flex justify-between">
@@ -91,37 +80,13 @@ export default function ArtworksCard() {
 									<div className="flex space-x-4">
 										<button className="flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">
 											{/* Like Icon */}
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke-width="1.5"
-												stroke="currentColor"
-												class="w-6 h-6">
-												<path
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-												/>
-											</svg>
+											<HeartIcon className="w-6 h-6 " />
 										</button>
 										<button
 											onClick={openPopup}
 											className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
 											{/* Comment Icon */}
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke-width="1.5"
-												stroke="currentColor"
-												class="w-6 h-6">
-												<path
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
-												/>
-											</svg>
+											<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
 										</button>
 										{showPopup && <CommentPopup onClose={closePopup} />}
 									</div>
