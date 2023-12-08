@@ -45,6 +45,7 @@ const artworks = [
 export default function ArtworksCard() {
 	const [showPopup, setShowPopup] = useState(false);
 
+
 	// when user click comment button - open the popup
 	const openPopup = () => {
 		setShowPopup(true);
