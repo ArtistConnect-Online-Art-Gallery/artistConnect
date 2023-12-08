@@ -5,7 +5,10 @@ import ExplorePage from './pages/ExplorePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+
 import SettingPage from './pages/SettingPage';
+
+import GalleryPage from './pages/GalleryPage';
 
 function App() {
 	return (
@@ -18,6 +21,7 @@ function App() {
 					<Route path="/register" element={<RegisterPage />} />
 					<Route path="/profile" element={<ProfilePage />} />
 					<Route path="/settings" element={<SettingPage />} />
+					<Route path="/gallery" element={<GalleryPage />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
