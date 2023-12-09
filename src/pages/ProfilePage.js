@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
 			{showFileForm && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-filter backdrop-blur-lg flex justify-center items-center">
-					<div className="max-w-xl w-full">
+					<div className="max-w-xl w-3/4 ">
 						<FileUploadForm onClose={closeFileForm} />
 					</div>
 				</div>
