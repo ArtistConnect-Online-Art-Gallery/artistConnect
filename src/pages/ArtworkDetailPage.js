@@ -49,10 +49,10 @@ export default function ArtworkDetailPage() {
 	return (
 		<>
 			<Header />
-			<div className="bg-white mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 flex justify-between items-center  ">
+			<div className="bg-white mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 flex flex-col sm:flex-row justify-between items-center">
 				{/* description div */}
 
-				<div className="flex flex-col relative w-2/5">
+				<div className="flex flex-col relative w-full sm:w-2/5">
 					<div className="relative">
 						<img
 							src={selectedArtwork.imageSrc}
@@ -100,7 +100,7 @@ export default function ArtworkDetailPage() {
 				</div>
 
 				{/* comment div */}
-				<div className="border rounded-lg  w-2/5 border-gray-200 pl-8 relative">
+				<div className="border rounded-lg relative w-full sm:w-2/5 border-gray-200 pl-8 mt-8 sm:mt-0">
 					<button className="absolute top-0 right-0 mt-2 mr-2 text-gray-500">
 						<ExclamationTriangleIcon className="w-6 h-6" />
 					</button>
@@ -112,7 +112,7 @@ export default function ArtworkDetailPage() {
 								</div>
 								<div className="flex items-start flex-col">
 									<h3 className=" font-medium p-3 text-gray-900">{comment.author}</h3>
-									<div className="prose prose-sm  max-w-none text-left py-2 pl-3 text-gray-500">{comment.content}</div>
+									<div className="prose prose-sm  max-w-none text-left py-2 p-3 text-gray-500">{comment.content}</div>
 								</div>
 							</div>
 						))}
