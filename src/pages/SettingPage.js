@@ -1,10 +1,10 @@
 import Footer from '../components/Footer';
-import Userheader from '../components/Userheader';
+import UserHeader from '../components/UserHeader';
 
 export default function SettingPage() {
 	return (
 		<>
-			<Userheader />
+			<UserHeader />
 			<div className="flex justify-center items-center">
 				<div className="divide-y divide-dark/5">
 					<div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">

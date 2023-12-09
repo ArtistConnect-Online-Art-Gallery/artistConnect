@@ -1,12 +1,34 @@
-import Userheader from '../components/Userheader';
+import UserHeader from '../components/UserHeader';
 import Footer from '../components/Footer';
 import ArtworksCard from '../components/ArtworksCard';
 import { CheckBadgeIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import FileUploadForm from '../components/FileUploadForm';
 
 export default function ProfilePage() {
+	//upload file form state
+	const [showFileForm, setShowFileForm] = useState(false);
+
+	// when user click upload button - open the form
+	const openFileForm = () => {
+		setShowFileForm(true);
+	};
+
+	const closeFileForm = () => {
+		setShowFileForm(false);
+	};
+
 	return (
 		<>
-			<Userheader />
+			<UserHeader />
+
+			{showFileForm && (
+				<div className="fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-filter backdrop-blur-lg flex justify-center items-center">
+					<div className="max-w-xl w-full">
+						<FileUploadForm onClose={closeFileForm} />
+					</div>
+				</div>
+			)}
 			<div className="relative block h-500-px">
 				<div>
 					<img
@@ -26,10 +48,10 @@ export default function ProfilePage() {
 							<CheckBadgeIcon />
 						</span>
 					</span>
-
 					<div>
 						<button
 							type="submit"
+							onClick={openFileForm}
 							class="my-5 w-full flex justify-center  hover:text-grey-500 p-4  rounded-full tracking-wide
                                     font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 hover:text-white shadow-lg cursor-pointer transition ease-in duration-300">
 							Upload Artwork
