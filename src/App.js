@@ -5,9 +5,8 @@ import ExplorePage from './pages/ExplorePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
-
+import ArtworkDetailPage from './pages/ArtworkDetailPage';
 import SettingPage from './pages/SettingPage';
-
 import GalleryPage from './pages/GalleryPage';
 
 function App() {
@@ -22,6 +21,7 @@ function App() {
 					<Route path="/profile" element={<ProfilePage />} />
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />
+					<Route path="/artwork/:id" element={<ArtworkDetailPage />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

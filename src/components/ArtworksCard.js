@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
 import CommentPopup from './CommentPopup';
 import { HeartIcon, ChatBubbleOvalLeftEllipsisIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
+import { usePopup } from '../hooks/usePopup';
 
-const artworks = [
+export const artworks = [
 	{
 		id: 1,
 		title: 'Artworks Title 1',
-		href: '#',
+
 		description: 'test description 1',
 		authorname: 'author 1',
 		imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
@@ -15,7 +16,7 @@ const artworks = [
 	{
 		id: 2,
 		title: 'Nomad Tumbler',
-		href: '#',
+
 		description: 'test description 2',
 		authorname: 'author 2',
 		imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
@@ -24,7 +25,7 @@ const artworks = [
 	{
 		id: 3,
 		title: 'Focus Paper Refill',
-		href: '#',
+
 		description: 'test description 3',
 		authorname: 'author 3',
 		imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
@@ -33,7 +34,7 @@ const artworks = [
 	{
 		id: 4,
 		title: 'Machined Mechanical Pencil',
-		href: '#',
+
 		description: 'test description 4',
 		authorname: 'author 4',
 		imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
@@ -43,19 +44,7 @@ const artworks = [
 ];
 
 export default function ArtworksCard() {
-	const [showPopup, setShowPopup] = useState(false);
-
-
-	// when user click comment button - open the popup
-	const openPopup = () => {
-		setShowPopup(true);
-	};
-
-	//when user click send button or delete button -close the popup
-	const closePopup = () => {
-		setShowPopup(false);
-	};
-
+	const { showPopup, openPopup, closePopup } = usePopup();
 	return (
 		<div className="bg-white">
 			<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -72,7 +61,9 @@ export default function ArtworksCard() {
 							</div>
 							<div className="bg-white bg-opacity-80 p-4 flex justify-between">
 								<div className="text-left">
-									<h3 className="text-lg font-semibold">{artwork.title}</h3>
+									<Link to={`/artwork/${artwork.id}`}>
+										<h3 className="text-lg font-semibold">{artwork.title}</h3>
+									</Link>
 									<p className="text-sm text-gray-500">{artwork.authorname}</p>
 									<p className="text-sm text-gray-600">{artwork.description}</p>
 								</div>

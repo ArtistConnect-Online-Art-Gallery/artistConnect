@@ -24,12 +24,16 @@ export default function SettingPage() {
 										className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
 									/>
 									<div>
-										<button
-											type="button"
-											className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold hover:bg-indigo-400 text-white shadow-sm">
-											Change avatar
-										</button>
-										<p className="mt-2 text-xs leading-5 text-gray-400">JPG, GIF or PNG. 1MB max.</p>
+										<input type="file" id="file" className="sr-only" />
+										<label htmlFor="file">
+											<span
+												type="button"
+												className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold hover:bg-indigo-400 text-white shadow-sm">
+												Change avatar
+											</span>
+										</label>
+
+										<p className="mt-2 text-xs leading-5 text-gray-400">JPG, GIF, or PNG. 1MB max.</p>
 									</div>
 								</div>
 
