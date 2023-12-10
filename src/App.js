@@ -8,6 +8,7 @@ import ProfilePage from './pages/ProfilePage';
 import ArtworkDetailPage from './pages/ArtworkDetailPage';
 import SettingPage from './pages/SettingPage';
 import GalleryPage from './pages/GalleryPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />
 					<Route path="/artwork/:id" element={<ArtworkDetailPage />} />
+					<Route path="/admin" element={<AdminPage />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
