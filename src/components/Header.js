@@ -37,7 +37,7 @@ export default function Header() {
 					</button>
 				</div>
 				<div className="hidden lg:flex">
-					<Link to="/login" className="text-sm font-semibold leading-6 text-white">
+					<Link to="/users/login" className="text-sm font-semibold leading-6 text-white">
 						Log in <span aria-hidden="true">&rarr;</span>
 					</Link>
 				</div>

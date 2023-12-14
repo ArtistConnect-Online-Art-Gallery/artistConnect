@@ -17,9 +17,9 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<LandingPage />} />
 					<Route path="/explore" element={<ExplorePage />} />
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/register" element={<RegisterPage />} />
 					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/users/login" element={<LoginPage />} />
+					<Route path="/register" element={<RegisterPage />} />
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />
 					<Route path="/artwork/:id" element={<ArtworkDetailPage />} />

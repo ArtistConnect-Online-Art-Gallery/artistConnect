@@ -1,8 +1,45 @@
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+	const [values, setValues] = useState({
+		email: '',
+		password: '',
+	});
+
+	const handleInput = (e) => {
+		setValues((pre) => ({
+			...pre,
+			[e.target.name]: e.target.value,
+		}));
+	};
+
+	const navigate = useNavigate();
+
+	const handleSumbit = (e) => {
+		e.preventDefault();
+		// Assuming `values` is meant to hold the form data
+		// Check if `values` exists and has valid data
+		if (values) {
+			axios
+				.post('http://localhost:3000/users/login', values)
+				.then((response) => {
+					navigate('/profile').catch((error) => {
+						console.log(error);
+					});
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} else {
+			console.log('Values are missing or invalid.');
+		}
+	};
+
 	return (
 		<>
 			<Header />
@@ -14,7 +51,7 @@ export default function Login() {
 				</div>
 
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-					<form className="space-y-6" action="#" method="POST">
+					<form className="space-y-6" method="POST" action="" onSubmit={handleSumbit}>
 						<div>
 							<label
 								htmlFor="email"
@@ -23,6 +60,7 @@ export default function Login() {
 							</label>
 							<div className="mt-2">
 								<input
+									onChange={handleInput}
 									id="email"
 									name="email"
 									type="email"
@@ -39,13 +77,14 @@ export default function Login() {
 									Password
 								</label>
 								<div className="text-sm">
-									<Link href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+									<Link to="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
 										Forgot password?
 									</Link>
 								</div>
 							</div>
 							<div className="mt-2">
 								<input
+									onChange={handleInput}
 									id="password"
 									name="password"
 									type="password"
@@ -57,13 +96,11 @@ export default function Login() {
 						</div>
 
 						<div>
-							<Link to="/profile">
-								<button
-									type="submit"
-									className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-									Sign in
-								</button>
-							</Link>
+							<button
+								type="submit"
+								className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+								Sign in
+							</button>
 						</div>
 					</form>
 
