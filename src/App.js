@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LandingPage from './pages/HomePage/LandingPage';
+import LandingPage from './pages/LandingPage';
 import ExplorePage from './pages/ExplorePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -18,7 +18,7 @@ function App() {
 					<Route exact path="/" element={<LandingPage />} />
 					<Route path="/explore" element={<ExplorePage />} />
 					<Route path="/profile" element={<ProfilePage />} />
-					<Route path="/users/login" element={<LoginPage />} />
+					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" element={<RegisterPage />} />
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />

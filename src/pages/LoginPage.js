@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../redux/slices/users';
+import { useEffect } from 'react';
+import { LoginSuccess } from '../utils/alert';
+import { FailedMessage } from '../utils/alert';
 
 export default function Login() {
 	const dispatch = useDispatch();
@@ -24,16 +27,16 @@ export default function Login() {
 		//bring dispatch passing playload
 		dispatch(loginUserAction({ email, password }));
 	};
+
 	//get data from redux store
 	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
 
 	//redirect user to profile page if logged in
-	if (userInfo?.user?.isAdmin) {
-		window.location.href = '/admin';
-	} else {
-		window.location.href = '/profile';
-	}
-
+	useEffect(() => {
+		if (userInfo?.user?.isAdmin) {
+			window.location.href = '/admin';
+		}
+	}, [userInfo]);
 	return (
 		<>
 			<Header />
@@ -65,7 +68,6 @@ export default function Login() {
 								/>
 							</div>
 						</div>
-
 						<div>
 							<div className="flex items-center justify-between">
 								<label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
@@ -90,13 +92,22 @@ export default function Login() {
 								/>
 							</div>
 						</div>
-
+						{error && <FailedMessage message={error?.message} />}
 						<div>
-							<button
-								type="submit"
-								className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-								Sign in
-							</button>
+							{loading ? (
+								<button
+									disabled
+									type="submit"
+									className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+									Loading...
+								</button>
+							) : (
+								<button
+									type="submit"
+									className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+									Sign in
+								</button>
+							)}
 						</div>
 					</form>
 

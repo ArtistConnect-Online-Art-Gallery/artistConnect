@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import logo from '../pages/HomePage/logo.png';
+import logo from '../utils/logo.png';
 import { Link } from 'react-router-dom';
 
 const user = {
@@ -44,7 +44,7 @@ export default function ProfilePage() {
 									</Disclosure.Button>
 								</div>
 								<Link to="/" className="flex flex-shrink-0 items-center">
-									<img className="h-8 w-auto" src={logo} alt="Your Company" />
+									<img className="h-8 w-auto" src={logo} alt="artistconnet" />
 								</Link>
 								<div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
 									{navigation.map((item) => (
