@@ -1,16 +1,17 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserAction } from '../redux/slices/users';
 
 export default function Login() {
+	const dispatch = useDispatch();
 	const [values, setValues] = useState({
 		email: '',
 		password: '',
 	});
-
+	const { email, password } = values;
 	const handleInput = (e) => {
 		setValues((pre) => ({
 			...pre,
@@ -18,27 +19,20 @@ export default function Login() {
 		}));
 	};
 
-	const navigate = useNavigate();
-
-	const handleSumbit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Assuming `values` is meant to hold the form data
-		// Check if `values` exists and has valid data
-		if (values) {
-			axios
-				.post('http://localhost:3000/users/login', values)
-				.then((response) => {
-					navigate('/profile').catch((error) => {
-						console.log(error);
-					});
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		} else {
-			console.log('Values are missing or invalid.');
-		}
+		//bring dispatch passing playload
+		dispatch(loginUserAction({ email, password }));
 	};
+	//get data from redux store
+	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
+
+	//redirect user to profile page if logged in
+	if (userInfo?.user?.isAdmin) {
+		window.location.href = '/admin';
+	} else {
+		window.location.href = '/profile';
+	}
 
 	return (
 		<>
@@ -51,7 +45,7 @@ export default function Login() {
 				</div>
 
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-					<form className="space-y-6" method="POST" action="" onSubmit={handleSumbit}>
+					<form className="space-y-6" method="POST" action="" onSubmit={handleSubmit}>
 						<div>
 							<label
 								htmlFor="email"
@@ -61,6 +55,7 @@ export default function Login() {
 							<div className="mt-2">
 								<input
 									onChange={handleInput}
+									value={email}
 									id="email"
 									name="email"
 									type="email"
@@ -85,6 +80,7 @@ export default function Login() {
 							<div className="mt-2">
 								<input
 									onChange={handleInput}
+									value={password}
 									id="password"
 									name="password"
 									type="password"
