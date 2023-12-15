@@ -1,4 +1,4 @@
-import UserHeader from '../components/UserHeader';
+import UserHeader from '../components/Userheader';
 import Footer from '../components/Footer';
 import GalleryButtons from '../components/GalleryButtons';
 import ArtworksCard, { artworks } from '../components/ArtworksCard';

@@ -1,5 +1,5 @@
 import Footer from '../components/Footer';
-import UserHeader from '../components/UserHeader';
+import UserHeader from '../components/Userheader';
 
 export default function SettingPage() {
 	return (
