@@ -1,4 +1,4 @@
-import UserHeader from '../components/Userheader';
+import UserHeader from '../components/UserHeader';
 import Footer from '../components/Footer';
 import { CheckBadgeIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
