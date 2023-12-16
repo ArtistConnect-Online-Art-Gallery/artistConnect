@@ -2,7 +2,29 @@ export default function FileUploadForm({ onClose }) {
 	const handSend = (event) => {
 		event.preventDefault();
 		onClose();
-	};
+	}; 
+	const genreOptions = [
+		'Modern',
+		'Impressionist',
+		'Contemporary',
+		'Surrealist',
+		'Pop Art',
+		'Cubist',
+		'Abstract',
+		'Graffiti/Street-Art',
+		'Other',
+	]; 
+	const mediumOptions = [
+		'Oil Painting',
+		'Acrylic Painting',
+		'Watercolor painting',
+		'Ink Drawing',
+		'Pencil Drawing',
+		'Sculpture',
+		'Mixed Media',
+		'Photography',
+		'Other',
+	];
 	return (
 		<div className="flex items-center justify-center p-18">
 			<div className=" mx-auto w-full rounded-lg p-8  bg-white">
@@ -71,9 +93,15 @@ export default function FileUploadForm({ onClose }) {
 							name="genre"
 							className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
 							defaultValue="genre3">
-							<option>Genre1</option>
-							<option>Genre2</option>
-							<option>Genre3</option>
+							<option>{genreOptions[0]}</option>
+							<option>{genreOptions[1]}</option>
+							<option>{genreOptions[2]}</option>
+							<option>{genreOptions[3]}</option>
+							<option>{genreOptions[4]}</option>
+							<option>{genreOptions[5]}</option>
+							<option>{genreOptions[6]}</option>
+							<option>{genreOptions[7]}</option>
+							<option>{genreOptions[8]}</option>
 						</select>
 					</div>
 
@@ -86,9 +114,15 @@ export default function FileUploadForm({ onClose }) {
 							name="medium"
 							className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
 							defaultValue="Medium2">
-							<option>Medium1</option>
-							<option>Medium2</option>
-							<option>Medium3</option>
+							<option>{mediumOptions[0]}</option>
+							<option>{mediumOptions[1]}</option>
+							<option>{mediumOptions[2]}</option>
+							<option>{mediumOptions[3]}</option>
+							<option>{mediumOptions[4]}</option>
+							<option>{mediumOptions[5]}</option>
+							<option>{mediumOptions[6]}</option>
+							<option>{mediumOptions[7]}</option>
+							<option>{mediumOptions[8]}</option>
 						</select>
 					</div>
 					<div className="mt-5">
