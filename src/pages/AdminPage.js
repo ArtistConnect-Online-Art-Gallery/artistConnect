@@ -1,7 +1,7 @@
 import Footer from '../components/Footer';
 import CommentCard, { comments } from '../components/CommentCard';
 import ArtworksCard, { artworks } from '../components/ArtworksCard';
-import UserHeader from '../components/Userheader';
+import UserHeader from '../components/UserHeader';
 
 export default function AdminPage() {
 	// Filter reported artworks
