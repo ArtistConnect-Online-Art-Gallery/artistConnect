@@ -4,6 +4,9 @@ import { CheckBadgeIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import FileUploadForm from '../components/FileUploadForm';
 import ArtworksCard, { artworks } from '../components/ArtworksCard';
+import { getUserProfileAction } from '../redux/slices/users';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 export default function ProfilePage() {
 	//upload file form state
@@ -17,6 +20,14 @@ export default function ProfilePage() {
 	const closeFileForm = () => {
 		setShowFileForm(false);
 	};
+
+	//dispatch
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getUserProfileAction());
+	}, [dispatch]);
+	//get data from store
+	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
 
 	return (
 		<>

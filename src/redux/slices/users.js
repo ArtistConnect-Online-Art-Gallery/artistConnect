@@ -63,6 +63,27 @@ export const signoutAction = createAsyncThunk(
 	}
 );
 
+//user profile action
+export const getUserProfileAction = createAsyncThunk(
+	'users/fetchProfile',
+	async (payload, { rejectWithValue, getState, dispatch }) => {
+		try {
+			//get token
+			const token = getState()?.users?.userAuth?.userInfo?.token;
+			const config = {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const { data } = await axios.get(`${baseURL}/users/profile`, config);
+			return data;
+		} catch (error) {
+			console.log(error);
+			return rejectWithValue(error?.response?.data);
+		}
+	}
+);
+
 //users slice
 const usersSlice = createSlice({
 	name: 'users',
@@ -102,6 +123,19 @@ const usersSlice = createSlice({
 		//logout
 		builder.addCase(signoutAction.fulfilled, (state, action) => {
 			state.userAuth.userInfo = null;
+		});
+
+		//profile
+		builder.addCase(getUserProfileAction.pending, (state, action) => {
+			state.loading = true;
+		});
+		builder.addCase(getUserProfileAction.fulfilled, (state, action) => {
+			state.profile = action.payload;
+			state.loading = false;
+		});
+		builder.addCase(getUserProfileAction.rejected, (state, action) => {
+			state.error = action.payload;
+			state.loading = false;
 		});
 	},
 });

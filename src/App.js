@@ -10,6 +10,9 @@ import SettingPage from './pages/SettingPage';
 import GalleryPage from './pages/GalleryPage';
 import AdminPage from './pages/AdminPage';
 import AdminRoute from './components/routesProtector/AdminRoute';
+import AuthRoute from './components/routesProtector/AuthRoute';
+import userEvent from '@testing-library/user-event';
+import { useDispatch } from 'react-redux';
 
 function App() {
 	return (
@@ -18,7 +21,14 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<LandingPage />} />
 					<Route path="/explore" element={<ExplorePage />} />
-					<Route path="/profile" element={<ProfilePage />} />
+					<Route
+						path="/profile"
+						element={
+							<AuthRoute>
+								<ProfilePage />
+							</AuthRoute>
+						}
+					/>
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" element={<RegisterPage />} />
 					<Route path="/settings" element={<SettingPage />} />

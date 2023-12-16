@@ -1,17 +1,12 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../utils/logo.png';
 import { Link } from 'react-router-dom';
 import { signoutAction } from '../redux/slices/users';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserProfileAction } from '../redux/slices/users';
 
-const user = {
-	name: 'Tom Cook',
-	email: 'tom@example.com',
-	imageUrl:
-		'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
 const navigation = [
 	{ name: 'Home', to: '/' },
 	{ name: 'Explore', to: '/explore' },
@@ -33,9 +28,17 @@ export default function UserHeader() {
 	const signoutHandler = (item) => {
 		if (item.name === 'Sign out') {
 			dispatch(signoutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
-			setIsSignOutButtonClicked(true); // Set the state to true to track the signout button click
+			setIsSignOutButtonClicked(true);
 		}
+		window.location.reload();
 	};
+
+	useEffect(() => {
+		dispatch(getUserProfileAction());
+	}, [dispatch]);
+
+	//get data from store
+	const { error, loading, profile } = useSelector((state) => state?.users);
 
 	return (
 		<Disclosure as="nav" className="bg-black">
@@ -79,7 +82,7 @@ export default function UserHeader() {
 									<button
 										type="button"
 										className="relative inline-flex items-center gap-x-1.5 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-										{user.name}
+										{profile?.user?.username}
 									</button>
 								</div>
 								<div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
@@ -89,7 +92,7 @@ export default function UserHeader() {
 											<Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 												<span className="absolute -inset-1.5" />
 												<span className="sr-only">Open user menu</span>
-												<img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+												<img className="h-8 w-8 rounded-full" src={profile?.user?.userAvatarImg} alt="" />
 											</Menu.Button>
 										</div>
 										<Transition
@@ -142,11 +145,11 @@ export default function UserHeader() {
 						<div className="flex flex-col justify-items-center border-t border-gray-700 pb-3 pt-4">
 							<div className="flex items-center justify-center px-5 sm:px-6">
 								<div className="flex-shrink-0">
-									<img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+									<img className="h-10 w-10 rounded-full" src={profile?.user?.userAvatarImg} alt="" />
 								</div>
 								<div className="ml-3">
-									<div className="text-base font-medium text-white">{user.name}</div>
-									<div className="text-sm font-medium text-gray-400">{user.email}</div>
+									<div className="text-base font-medium text-white">{profile?.user?.username}</div>
+									<div className="text-sm font-medium text-gray-400">{profile?.user?.email}</div>
 								</div>
 							</div>
 							<div className="mt-3 space-y-1 px-2 sm:px-3">

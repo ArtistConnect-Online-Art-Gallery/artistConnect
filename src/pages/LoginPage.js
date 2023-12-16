@@ -12,6 +12,10 @@ export default function Login() {
 	const dispatch = useDispatch();
 	const [values, setValues] = useState({});
 	const { email, password } = values;
+
+	//get data from redux store
+	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
+
 	const handleInput = (e) => {
 		// Dispatch resetErrAction when user modifies input
 		setValues({ ...values, [e.target.name]: e.target.value });
@@ -24,16 +28,13 @@ export default function Login() {
 		dispatch(loginUserAction({ email, password }));
 	};
 
-	//get data from redux store
-	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
-
 	//redirect user to their own page based on their role
-	//redirect
 	useEffect(() => {
 		if (userInfo?.user.isAdmin) {
 			window.location.href = '/admin';
 		}
 	}, [userInfo]);
+
 	return (
 		<>
 			<Header />

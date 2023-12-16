@@ -29,13 +29,6 @@ export default function Register() {
 	//select store data
 	const { user, error, loading } = useSelector((state) => state?.users);
 
-	// //redirect
-	// useEffect(() => {
-	// 	if (user) {
-	// 		window.location.href = '/login';
-	// 	}
-	// }, [user]);
-
 	return (
 		<>
 			<Header />
