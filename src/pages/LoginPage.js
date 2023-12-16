@@ -28,12 +28,12 @@ export default function Login() {
 	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
 
 	//redirect user to their own page based on their role
+	//redirect
 	useEffect(() => {
-		if (userInfo?.user?.isAdmin) {
+		if (userInfo?.user.isAdmin) {
 			window.location.href = '/admin';
 		}
 	}, [userInfo]);
-
 	return (
 		<>
 			<Header />

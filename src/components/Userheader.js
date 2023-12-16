@@ -1,8 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../utils/logo.png';
 import { Link } from 'react-router-dom';
+import { signoutAction } from '../redux/slices/users';
+import { useDispatch } from 'react-redux';
 
 const user = {
 	name: 'Tom Cook',
@@ -23,7 +25,18 @@ const userNavigation = [
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
-export default function ProfilePage() {
+export default function UserHeader() {
+	const dispatch = useDispatch();
+	const [isSignOutButtonClicked, setIsSignOutButtonClicked] = useState(false);
+
+	// logout user and remove localstorage user info
+	const signoutHandler = (item) => {
+		if (item.name === 'Sign out') {
+			dispatch(signoutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
+			setIsSignOutButtonClicked(true); // Set the state to true to track the signout button click
+		}
+	};
+
 	return (
 		<Disclosure as="nav" className="bg-black">
 			{({ open }) => (
@@ -93,6 +106,7 @@ export default function ProfilePage() {
 														{({ active }) => (
 															<Link
 																to={item.to}
+																onClick={() => signoutHandler(item)}
 																className={classNames(
 																	active ? 'bg-gray-100' : '',
 																	'block px-4 py-2 text-sm text-gray-700'
@@ -115,7 +129,6 @@ export default function ProfilePage() {
 							{navigation.map((item) => (
 								<Disclosure.Button
 									key={item.name}
-									as="a"
 									to={item.to}
 									className={classNames(
 										item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -138,13 +151,13 @@ export default function ProfilePage() {
 							</div>
 							<div className="mt-3 space-y-1 px-2 sm:px-3">
 								{userNavigation.map((item) => (
-									<Disclosure.Button
+									<Link
 										key={item.name}
-										as="a"
 										to={item.to}
+										onClick={() => signoutHandler(item)}
 										className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
 										{item.name}
-									</Disclosure.Button>
+									</Link>
 								))}
 							</div>
 						</div>

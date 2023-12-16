@@ -53,6 +53,16 @@ export const registerUserAction = createAsyncThunk(
 	}
 );
 
+//sign out  action
+export const signoutAction = createAsyncThunk(
+	'users/logout',
+	async (payload, { rejectWithValue, getState, dispatch }) => {
+		//get token
+		localStorage.removeItem('userInfo');
+		return true;
+	}
+);
+
 //users slice
 const usersSlice = createSlice({
 	name: 'users',
@@ -87,6 +97,11 @@ const usersSlice = createSlice({
 		builder.addCase(resetErrAction.pending, (state) => {
 			state.error = null;
 			state.userAuth.error = null;
+		});
+
+		//logout
+		builder.addCase(signoutAction.fulfilled, (state, action) => {
+			state.userAuth.userInfo = null;
 		});
 	},
 });
