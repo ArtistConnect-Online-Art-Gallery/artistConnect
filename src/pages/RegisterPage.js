@@ -1,8 +1,41 @@
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUserAction } from '../redux/slices/users';
+import React, { useEffect, useState } from 'react';
+import LoadingComp from '../components/LoadingComp';
+import { FailedMessage } from '../utils/alert';
 
 export default function Register() {
+	//dispatch
+	const dispatch = useDispatch();
+	const [values, setValues] = useState({
+		email: '',
+		password: '',
+		username: '',
+	});
+	const { email, password, username } = values;
+	const handleInput = (e) => {
+		setValues({ ...values, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		//bring dispatch passing playload
+		dispatch(registerUserAction({ email, password, username }));
+	};
+
+	//select store data
+	const { user, error, loading } = useSelector((state) => state?.users);
+
+	// //redirect
+	// useEffect(() => {
+	// 	if (user) {
+	// 		window.location.href = '/login';
+	// 	}
+	// }, [user]);
+
 	return (
 		<>
 			<Header />
@@ -12,9 +45,10 @@ export default function Register() {
 						Create Your Account
 					</h2>
 				</div>
-
+				{/* errr */}
+				{error && <FailedMessage message={error?.message} />}
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-					<form className="space-y-6" action="#" method="POST">
+					<form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
 						<div>
 							<label
 								htmlFor="email"
@@ -23,7 +57,9 @@ export default function Register() {
 							</label>
 							<div className="mt-2">
 								<input
+									onChange={handleInput}
 									id="email"
+									value={email}
 									name="email"
 									type="email"
 									autoComplete="email"
@@ -42,10 +78,12 @@ export default function Register() {
 
 							<div className="mt-2">
 								<input
-									id="password"
-									name="password"
-									type="password"
-									autoComplete="current-password"
+									onChange={handleInput}
+									id="username"
+									value={username}
+									type="username"
+									name="username"
+									autoComplete="current-username"
 									required
 									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent-2"
 								/>
@@ -61,9 +99,11 @@ export default function Register() {
 
 							<div className="mt-2">
 								<input
+									onChange={handleInput}
 									id="password"
-									name="password"
+									value={password}
 									type="password"
+									name="password"
 									autoComplete="current-password"
 									required
 									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent-2"
@@ -80,22 +120,28 @@ export default function Register() {
 
 							<div className="mt-2">
 								<input
+									onChange={handleInput}
 									id="password"
-									name="password"
+									value={password}
 									type="password"
+									name="password"
 									autoComplete="current-password"
 									required
 									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent-2"
 								/>
 							</div>
 						</div>
-
+						{/* errr */}
 						<div>
-							<button
-								type="submit"
-								className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-								Create Account
-							</button>
+							{loading ? (
+								<LoadingComp />
+							) : (
+								<button
+									type="submit"
+									className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+									Create Account
+								</button>
+							)}
 						</div>
 					</form>
 

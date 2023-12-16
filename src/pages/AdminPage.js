@@ -1,7 +1,7 @@
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CommentCard, { comments } from '../components/CommentCard';
 import ArtworksCard, { artworks } from '../components/ArtworksCard';
+import UserHeader from '../components/UserHeader';
 
 export default function AdminPage() {
 	// Filter reported artworks
@@ -9,9 +9,12 @@ export default function AdminPage() {
 
 	// Filter reported comments
 	const reportedComments = comments.filter((comment) => comment.report);
+
+	//get login user from local storage
 	return (
 		<>
-			<Header />
+			<UserHeader />
+
 			<div className="bg-white mx-auto h-full max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 flex flex-col sm:flex-row">
 				<div className="mx-auto  max-w-3xl ">
 					<div className="m-4">

@@ -5,25 +5,21 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../redux/slices/users';
 import { useEffect } from 'react';
-import { LoginSuccess } from '../utils/alert';
 import { FailedMessage } from '../utils/alert';
-
+import LoadingComp from '../components/LoadingComp';
+import { resetErrAction } from '../redux/slices/globalActions/globalActions';
 export default function Login() {
 	const dispatch = useDispatch();
-	const [values, setValues] = useState({
-		email: '',
-		password: '',
-	});
+	const [values, setValues] = useState({});
 	const { email, password } = values;
 	const handleInput = (e) => {
-		setValues((pre) => ({
-			...pre,
-			[e.target.name]: e.target.value,
-		}));
+		// Dispatch resetErrAction when user modifies input
+		setValues({ ...values, [e.target.name]: e.target.value });
 	};
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		dispatch(resetErrAction());
 		//bring dispatch passing playload
 		dispatch(loginUserAction({ email, password }));
 	};
@@ -31,12 +27,13 @@ export default function Login() {
 	//get data from redux store
 	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
 
-	//redirect user to profile page if logged in
+	//redirect user to their own page based on their role
 	useEffect(() => {
 		if (userInfo?.user?.isAdmin) {
 			window.location.href = '/admin';
 		}
 	}, [userInfo]);
+
 	return (
 		<>
 			<Header />
@@ -95,12 +92,7 @@ export default function Login() {
 						{error && <FailedMessage message={error?.message} />}
 						<div>
 							{loading ? (
-								<button
-									disabled
-									type="submit"
-									className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-									Loading...
-								</button>
+								<LoadingComp />
 							) : (
 								<button
 									type="submit"

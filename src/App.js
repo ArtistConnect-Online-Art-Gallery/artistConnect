@@ -9,6 +9,7 @@ import ArtworkDetailPage from './pages/ArtworkDetailPage';
 import SettingPage from './pages/SettingPage';
 import GalleryPage from './pages/GalleryPage';
 import AdminPage from './pages/AdminPage';
+import AdminRoute from './components/routesProtector/AdminRoute';
 
 function App() {
 	return (
@@ -23,7 +24,14 @@ function App() {
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />
 					<Route path="/artwork/:id" element={<ArtworkDetailPage />} />
-					<Route path="/admin" element={<AdminPage />} />
+					<Route
+						path="/admin"
+						element={
+							<AdminRoute>
+								<AdminPage />
+							</AdminRoute>
+						}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</div>
