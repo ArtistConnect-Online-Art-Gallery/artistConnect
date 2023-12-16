@@ -5,7 +5,7 @@ import logo from '../utils/logo.png';
 import { Link } from 'react-router-dom';
 import { signoutAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfileAction } from '../redux/slices/users';
+import { getUserProfileAction, loginUserAction } from '../redux/slices/users';
 
 const navigation = [
 	{ name: 'Home', to: '/' },
@@ -29,16 +29,20 @@ export default function UserHeader() {
 		if (item.name === 'Sign out') {
 			dispatch(signoutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
 			setIsSignOutButtonClicked(true);
+			window.location.reload();
 		}
-		window.location.reload();
+		window.location.href = '/';
 	};
-
-	useEffect(() => {
-		dispatch(getUserProfileAction());
-	}, [dispatch]);
 
 	//get data from store
 	const { error, loading, profile } = useSelector((state) => state?.users);
+
+	useEffect(() => {
+		dispatch(loginUserAction());
+	}, [dispatch]);
+	useEffect(() => {
+		dispatch(getUserProfileAction());
+	}, [dispatch]);
 
 	return (
 		<Disclosure as="nav" className="bg-black">

@@ -11,8 +11,6 @@ import GalleryPage from './pages/GalleryPage';
 import AdminPage from './pages/AdminPage';
 import AdminRoute from './components/routesProtector/AdminRoute';
 import AuthRoute from './components/routesProtector/AuthRoute';
-import userEvent from '@testing-library/user-event';
-import { useDispatch } from 'react-redux';
 
 function App() {
 	return (

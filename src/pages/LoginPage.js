@@ -30,7 +30,9 @@ export default function Login() {
 
 	//redirect user to their own page based on their role
 	useEffect(() => {
-		if (userInfo?.user.isAdmin) {
+		if (userInfo?.user && !userInfo?.user?.isAdmin) {
+			window.location.href = '/profile';
+		} else if (userInfo?.user && userInfo?.user?.isAdmin) {
 			window.location.href = '/admin';
 		}
 	}, [userInfo]);
