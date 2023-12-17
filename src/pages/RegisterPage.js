@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUserAction } from '../redux/slices/users';
 import React, { useEffect, useState } from 'react';
 import LoadingComp from '../components/LoadingComp';
-import { FailedMessage } from '../utils/alert';
+import { DuplicatedUser } from '../utils/alert';
 
 export default function Register() {
 	//dispatch
@@ -44,7 +44,7 @@ export default function Register() {
 					</h2>
 				</div>
 				{/* errr */}
-				{error && <FailedMessage message={error?.message} />}
+				{error && <DuplicatedUser message={error?.message} />}
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 					<form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
 						<div>

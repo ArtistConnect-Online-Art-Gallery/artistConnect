@@ -22,3 +22,16 @@ export const FailedMessage = ({ message }) => {
 		dispatch(resetErrAction());
 	});
 };
+
+export const DuplicatedUser = () => {
+	const dispatch = useDispatch();
+
+	Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'User already exists',
+	}).then(() => {
+		// After the user closes the error pop-up, reset the error state
+		dispatch(resetErrAction());
+	});
+};
