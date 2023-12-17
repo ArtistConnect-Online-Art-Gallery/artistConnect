@@ -1,5 +1,4 @@
-async function artworkCard(username, password){ 
-    console.log(username, password);
+async function artworkCard(user, artworkImg, title, description, genre, medium ){ 
 
     let result = await fetch(
       process.env.REACT_APP_BACKEND_URL + "/artworks/:id/",
