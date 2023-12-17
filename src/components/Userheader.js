@@ -30,8 +30,8 @@ export default function UserHeader() {
 			dispatch(signoutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
 			setIsSignOutButtonClicked(true);
 			window.location.reload();
+			window.location.href = '/';
 		}
-		window.location.href = '/';
 	};
 
 	//get data from store
