@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUserAction } from '../redux/slices/users';
 import React, { useEffect, useState } from 'react';
 import LoadingComp from '../components/LoadingComp';
-import { DuplicatedUser } from '../utils/alert';
+import { FailedMessage, RgisterSuccess } from '../utils/alert';
+import { resetErrAction, resetSuccessAction } from '../redux/slices/globalActions/globalActions';
 
 export default function Register() {
 	//dispatch
@@ -22,11 +23,13 @@ export default function Register() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		dispatch(resetSuccessAction());
+
 		//bring dispatch passing playload
 		dispatch(registerUserAction({ email, password, username }));
 	};
 	//select store data
-	const { user, error, loading } = useSelector((state) => state?.users);
+	const { user, error, loading, userInfo } = useSelector((state) => state?.users);
 	//redirect
 	useEffect(() => {
 		if (user) {
@@ -44,7 +47,7 @@ export default function Register() {
 					</h2>
 				</div>
 				{/* errr */}
-				{error && <DuplicatedUser message={error?.message} />}
+				{error && <FailedMessage message={error?.message} />}
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 					<form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
 						<div>

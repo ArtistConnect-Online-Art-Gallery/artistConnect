@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../redux/slices/users';
 import { useEffect } from 'react';
-import { FailedMessage } from '../utils/alert';
+import { FailedMessage, RgisterSuccess } from '../utils/alert';
 import LoadingComp from '../components/LoadingComp';
-import { resetErrAction } from '../redux/slices/globalActions/globalActions';
+import { resetErrAction, resetSuccessAction } from '../redux/slices/globalActions/globalActions';
 export default function Login() {
 	const dispatch = useDispatch();
 	const [values, setValues] = useState({});
@@ -25,6 +25,7 @@ export default function Login() {
 		e.preventDefault();
 
 		dispatch(resetErrAction());
+		dispatch(resetSuccessAction());
 		//bring dispatch passing playload
 		dispatch(loginUserAction({ email, password }));
 	};

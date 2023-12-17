@@ -27,7 +27,7 @@ export default function ProfilePage() {
 		dispatch(getUserProfileAction());
 	}, [dispatch]);
 	//get data from store
-	const { error, loading, userInfo } = useSelector((state) => state?.users?.userAuth);
+	const { profile } = useSelector((state) => state?.users);
 
 	return (
 		<>
@@ -73,20 +73,19 @@ export default function ProfilePage() {
 							<div className="w-full lg:w-4/12 px-4 lg:order-1"></div>
 						</div>
 						<div className="text-center mt-5">
-							<h3 className="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">Tom Cook</h3>
+							<h3 className="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">
+								{profile?.user?.username}
+							</h3>
 
 							<div className="text-blueGray-600 mt-1">
-								<i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>tom@example.com
+								<i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+								{profile?.user?.email}
 							</div>
 						</div>
 						<div className="mt-10 py-10 border-t border-blueGray-200 text-center">
 							<div className="flex flex-wrap justify-center">
 								<div className="w-full lg:w-9/12 px-4">
-									<p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-										An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick
-										Murphy writes, performs and records all of his own music, giving it a warm, intimate feel with a
-										solid groove structure. An artist of considerable range.
-									</p>
+									<p className="mb-4 text-lg leading-relaxed text-blueGray-700">{profile?.user?.bio}</p>
 								</div>
 							</div>
 						</div>
