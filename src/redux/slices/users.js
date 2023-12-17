@@ -16,6 +16,7 @@ const initialState = {
 	},
 };
 
+//login user Action
 export const loginUserAction = createAsyncThunk(
 	'users/login',
 	async ({ email, password }, { rejectWithValue, getState, dispatch }) => {
@@ -53,7 +54,7 @@ export const registerUserAction = createAsyncThunk(
 	}
 );
 
-//sign out  action
+//sign out action
 export const signoutAction = createAsyncThunk(
 	'users/logout',
 	async (payload, { rejectWithValue, getState, dispatch }) => {
@@ -84,6 +85,25 @@ export const getUserProfileAction = createAsyncThunk(
 	}
 );
 
+//update user profile action
+export const updateUserProfileAction = createAsyncThunk(
+	'users/updateProfile',
+	async ({ username, email, password, bio, userAvatarImg }, { rejectWithValue, getState, dispatch }) => {
+		try {
+			const { data } = await axios.patch(`${baseURL}/users/settings`, {
+				username,
+				email,
+				password,
+				bio,
+				userAvatarImg,
+			});
+			return data;
+		} catch (error) {
+			console.log(error);
+			return rejectWithValue(error?.response?.data);
+		}
+	}
+);
 //users slice
 const usersSlice = createSlice({
 	name: 'users',
@@ -134,6 +154,19 @@ const usersSlice = createSlice({
 			state.loading = false;
 		});
 		builder.addCase(getUserProfileAction.rejected, (state, action) => {
+			state.error = action.payload;
+			state.loading = false;
+		});
+
+		//update profile
+		builder.addCase(updateUserProfileAction.pending, (state, action) => {
+			state.loading = true;
+		});
+		builder.addCase(updateUserProfileAction.fulfilled, (state, action) => {
+			state.profile = action.payload;
+			state.loading = false;
+		});
+		builder.addCase(updateUserProfileAction.rejected, (state, action) => {
 			state.error = action.payload;
 			state.loading = false;
 		});

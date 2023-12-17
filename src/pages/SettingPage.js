@@ -1,15 +1,31 @@
 import Footer from '../components/Footer';
 import UserHeader from '../components/UserHeader';
 import { useState } from 'react';
+import { updateUserProfileAction } from '../redux/slices/users';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SettingPage() {
+	const [formData, setFormData] = useState({
+		username: '',
+		email: '',
+		password: '',
+		bio: '',
+		userAvatarImg: '',
+	});
+	const { username, email, password, bio, userAvatarImg } = formData;
+	//onChange Handeler
+	const onChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	//submit Handeler
+	const onSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
+	};
 	const [files, setFiles] = useState([]);
 	const [filesErrs, setFilesErrs] = useState([]);
 
-	//file handle change
-	const handleFileChange = (e) => {
-		console.log(e);
-	};
 	return (
 		<>
 			<UserHeader />
@@ -23,12 +39,16 @@ export default function SettingPage() {
 							</p>
 						</div>
 
-						<form className="md:col-span-2">
+						<form onSubmit={onSubmit} className="md:col-span-2">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full flex items-center gap-x-8">
 									<img
-										src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-										alt=""
+										onChange={onChange}
+										src={
+											userAvatarImg ||
+											'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+										}
+										alt="user avatar"
 										className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
 									/>
 									<div>
@@ -52,11 +72,13 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<div className="flex rounded-md bg-dark/5 ring-1 ring-inset ring-dark/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
 											<input
+												onChange={onChange}
+												value={username}
 												type="text"
 												name="username"
 												id="username"
 												autoComplete="username"
-												className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-dark focus:ring-0 sm:text-sm sm:leading-6"
+												className=" indent-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-dark focus:ring-0 sm:text-sm sm:leading-6"
 												placeholder="tom cook"
 											/>
 										</div>
@@ -69,11 +91,13 @@ export default function SettingPage() {
 									</label>
 									<div className="mt-2">
 										<input
+											onChange={onChange}
+											value={email}
 											id="email"
 											name="email"
 											type="email"
 											autoComplete="email"
-											className="block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 										/>
 									</div>
 								</div>
@@ -94,7 +118,7 @@ export default function SettingPage() {
 							<h2 className="text-base font-semibold leading-7 text-dark">Bio</h2>
 							<p className="mt-1 text-sm leading-6 text-gray-400">Write few sentences about yourself.</p>
 						</div>
-						<form className="md:col-span-2 ">
+						<form onSubmit={onSubmit} className="md:col-span-2 ">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full">
 									<label htmlFor="about" className="block text-sm font-medium leading-6 text-dark">
@@ -102,10 +126,12 @@ export default function SettingPage() {
 									</label>
 									<div className="mt-2">
 										<textarea
+											onChange={onChange}
+											value={bio}
 											id="about"
-											name="about"
+											name="bio"
 											rows={3}
-											className="block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 											defaultValue={''}
 										/>
 									</div>
@@ -128,7 +154,7 @@ export default function SettingPage() {
 							<p className="mt-1 text-sm leading-6 text-gray-400">Update your password associated with your account.</p>
 						</div>
 
-						<form className="md:col-span-2">
+						<form onSubmit={onSubmit} className="md:col-span-2">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full">
 									<label htmlFor="current-password" className="block text-sm font-medium leading-6 text-dark">
@@ -140,7 +166,7 @@ export default function SettingPage() {
 											name="current_password"
 											type="password"
 											autoComplete="current-password"
-											className="block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 										/>
 									</div>
 								</div>
@@ -151,11 +177,13 @@ export default function SettingPage() {
 									</label>
 									<div className="mt-2">
 										<input
+											onChange={onChange}
+											value={password}
 											id="new-password"
-											name="new_password"
+											name="password"
 											type="password"
 											autoComplete="new-password"
-											className="block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+											className="  indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 										/>
 									</div>
 								</div>
@@ -166,11 +194,13 @@ export default function SettingPage() {
 									</label>
 									<div className="mt-2">
 										<input
+											onChange={onChange}
+											value={password}
 											id="confirm-password"
-											name="confirm_password"
+											name="password"
 											type="password"
 											autoComplete="new-password"
-											className="block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 										/>
 									</div>
 								</div>

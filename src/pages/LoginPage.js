@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { FailedMessage, RgisterSuccess } from '../utils/alert';
 import LoadingComp from '../components/LoadingComp';
 import { resetErrAction, resetSuccessAction } from '../redux/slices/globalActions/globalActions';
+
 export default function Login() {
 	const dispatch = useDispatch();
 	const [values, setValues] = useState({});
