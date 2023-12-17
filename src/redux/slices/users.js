@@ -90,13 +90,24 @@ export const updateUserProfileAction = createAsyncThunk(
 	'users/updateProfile',
 	async ({ username, email, password, bio, userAvatarImg }, { rejectWithValue, getState, dispatch }) => {
 		try {
-			const { data } = await axios.patch(`${baseURL}/users/settings`, {
-				username,
-				email,
-				password,
-				bio,
-				userAvatarImg,
-			});
+			//get loginuser token
+			const token = getState()?.users?.userAuth?.userInfo?.token;
+			const config = {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const { data } = await axios.patch(
+				`${baseURL}/users/settings`,
+				{
+					username,
+					email,
+					password,
+					bio,
+					userAvatarImg,
+				},
+				config
+			);
 			return data;
 		} catch (error) {
 			console.log(error);

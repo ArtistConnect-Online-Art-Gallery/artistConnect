@@ -5,23 +5,25 @@ import { updateUserProfileAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SettingPage() {
-	const [formData, setFormData] = useState({
+	//dispatch
+	const dispatch = useDispatch();
+	const [values, setValues] = useState({
 		username: '',
 		email: '',
 		password: '',
 		bio: '',
 		userAvatarImg: '',
 	});
-	const { username, email, password, bio, userAvatarImg } = formData;
+	const { username, email, password, bio, userAvatarImg } = values;
 	//onChange Handeler
 	const onChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
 	//submit Handeler
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
+		dispatch(updateUserProfileAction({ username, email, password, bio, userAvatarImg }));
 	};
 	const [files, setFiles] = useState([]);
 	const [filesErrs, setFilesErrs] = useState([]);
@@ -132,7 +134,6 @@ export default function SettingPage() {
 											name="bio"
 											rows={3}
 											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-											defaultValue={''}
 										/>
 									</div>
 								</div>
