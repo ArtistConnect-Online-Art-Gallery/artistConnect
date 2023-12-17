@@ -1,6 +1,15 @@
 import Footer from '../components/Footer';
 import UserHeader from '../components/UserHeader';
+import { useState } from 'react';
+
 export default function SettingPage() {
+	const [files, setFiles] = useState([]);
+	const [filesErrs, setFilesErrs] = useState([]);
+
+	//file handle change
+	const handleFileChange = (e) => {
+		console.log(e);
+	};
 	return (
 		<>
 			<UserHeader />

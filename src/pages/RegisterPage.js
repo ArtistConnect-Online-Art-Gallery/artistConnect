@@ -29,7 +29,7 @@ export default function Register() {
 		dispatch(registerUserAction({ email, password, username }));
 	};
 	//select store data
-	const { user, error, loading, userInfo } = useSelector((state) => state?.users);
+	const { user, error, loading } = useSelector((state) => state?.users);
 	//redirect
 	useEffect(() => {
 		if (user) {
