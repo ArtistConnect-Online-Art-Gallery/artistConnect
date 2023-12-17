@@ -8,7 +8,9 @@ import {
 import { Link } from 'react-router-dom';
 import { usePopup } from '../hooks/usePopup';
 
-export const artworks = [
+export const artworks = [ 
+
+
 	{
 		id: 1,
 		title: 'Artworks Title 1',
