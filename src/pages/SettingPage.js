@@ -1,20 +1,41 @@
 import Footer from '../components/Footer';
 import UserHeader from '../components/UserHeader';
-import { useState } from 'react';
-import { updateUserProfileAction } from '../redux/slices/users';
+import { useEffect, useState } from 'react';
+import { getUserProfileAction, updateUserProfileAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SettingPage() {
 	//dispatch
 	const dispatch = useDispatch();
+	//get user profile from
+	useEffect(() => {
+		dispatch(getUserProfileAction());
+	}, [dispatch]);
+
+	//get data from store
+	const { error, loading, profile } = useSelector((state) => state?.users);
+	//get orders
+
 	const [values, setValues] = useState({
-		username: '',
-		email: '',
+		username: profile?.user?.username,
+		email: profile?.user?.email,
+		userAvatarImg:
+			profile?.user?.userAvatarImg ||
+			'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+		bio: profile?.user?.bio,
 		password: '',
-		bio: '',
-		userAvatarImg: '',
 	});
-	const { username, email, password, bio, userAvatarImg } = values;
+
+	//file upload
+	const fileUpload = (e) => {
+		const newFile = Array.from(e.target.files);
+		//pass new file
+		setFiles(newFile);
+	};
+
+	const [files, setFiles] = useState([]);
+	const [filesErrs, setFilesErrs] = useState([]);
+
 	//onChange Handeler
 	const onChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
@@ -23,10 +44,18 @@ export default function SettingPage() {
 	//submit Handeler
 	const onSubmit = (e) => {
 		e.preventDefault();
-		dispatch(updateUserProfileAction({ username, email, password, bio, userAvatarImg }));
+		if (!values.password) {
+			// alert no password
+			alert('Password cannot be empty');
+			return;
+		}
+		dispatch(
+			updateUserProfileAction({
+				...values,
+				userAvatarImg: files,
+			})
+		);
 	};
-	const [files, setFiles] = useState([]);
-	const [filesErrs, setFilesErrs] = useState([]);
 
 	return (
 		<>
@@ -47,7 +76,6 @@ export default function SettingPage() {
 									<img
 										onChange={onChange}
 										src={
-											userAvatarImg ||
 											'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
 										}
 										alt="user avatar"
@@ -75,7 +103,7 @@ export default function SettingPage() {
 										<div className="flex rounded-md bg-dark/5 ring-1 ring-inset ring-dark/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
 											<input
 												onChange={onChange}
-												value={username}
+												value={values.username}
 												type="text"
 												name="username"
 												id="username"
@@ -94,7 +122,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<input
 											onChange={onChange}
-											value={email}
+											value={values.email}
 											id="email"
 											name="email"
 											type="email"
@@ -129,7 +157,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<textarea
 											onChange={onChange}
-											value={bio}
+											value={values.bio}
 											id="about"
 											name="bio"
 											rows={3}
@@ -158,28 +186,13 @@ export default function SettingPage() {
 						<form onSubmit={onSubmit} className="md:col-span-2">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full">
-									<label htmlFor="current-password" className="block text-sm font-medium leading-6 text-dark">
-										Current password
-									</label>
-									<div className="mt-2">
-										<input
-											id="current-password"
-											name="current_password"
-											type="password"
-											autoComplete="current-password"
-											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-										/>
-									</div>
-								</div>
-
-								<div className="col-span-full">
 									<label htmlFor="new-password" className="block text-sm font-medium leading-6 text-dark">
 										New password
 									</label>
 									<div className="mt-2">
 										<input
 											onChange={onChange}
-											value={password}
+											value={values.password}
 											id="new-password"
 											name="password"
 											type="password"
@@ -196,7 +209,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<input
 											onChange={onChange}
-											value={password}
+											value={values.password}
 											id="confirm-password"
 											name="password"
 											type="password"

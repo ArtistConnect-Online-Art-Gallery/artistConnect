@@ -64,7 +64,7 @@ export const signoutAction = createAsyncThunk(
 	}
 );
 
-//user profile action
+//get user profile action
 export const getUserProfileAction = createAsyncThunk(
 	'users/fetchProfile',
 	async (payload, { rejectWithValue, getState, dispatch }) => {
@@ -95,8 +95,10 @@ export const updateUserProfileAction = createAsyncThunk(
 			const config = {
 				headers: {
 					Authorization: `Bearer ${token}`,
+					'Content-Type': 'application/json',
 				},
 			};
+
 			const { data } = await axios.patch(
 				`${baseURL}/users/settings`,
 				{
@@ -176,10 +178,13 @@ const usersSlice = createSlice({
 		builder.addCase(updateUserProfileAction.fulfilled, (state, action) => {
 			state.profile = action.payload;
 			state.loading = false;
+			state.isUpdated = true;
 		});
 		builder.addCase(updateUserProfileAction.rejected, (state, action) => {
-			state.error = action.payload;
+			state.profile = null;
 			state.loading = false;
+			state.isUpdated = false;
+			state.error = action.payload;
 		});
 	},
 });
