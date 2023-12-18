@@ -11,48 +11,63 @@ export default function SettingPage() {
 	useEffect(() => {
 		dispatch(getUserProfileAction());
 	}, [dispatch]);
-
 	//get data from store
 	const { error, loading, profile } = useSelector((state) => state?.users);
 	//get orders
 
-	const [values, setValues] = useState({
+	const [formData, setFormData] = useState({
 		username: profile?.user?.username,
 		email: profile?.user?.email,
-		userAvatarImg:
-			profile?.user?.userAvatarImg ||
-			'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 		bio: profile?.user?.bio,
 		password: '',
+		userAvatarImg: profile?.user?.userAvatarImg,
 	});
 
-	//file upload
-	const fileUpload = (e) => {
-		const newFile = Array.from(e.target.files);
-		//pass new file
-		setFiles(newFile);
-	};
-
 	const [files, setFiles] = useState([]);
-	const [filesErrs, setFilesErrs] = useState([]);
-
+	const [fileErrs, setFileErrs] = useState([]);
 	//onChange Handeler
 	const onChange = (e) => {
-		setValues({ ...values, [e.target.name]: e.target.value });
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	//file upload
+	const fileHandleChange = (e) => {
+		const newFiles = Array.from(e.target.files);
+		const newErrs = [];
+		newFiles.forEach((file) => {
+			if (file?.size > 1000000) {
+				newErrs.push(`${file?.name} is too large`);
+			}
+			if (!file?.type?.startsWith('image/')) {
+				newErrs.push(`${file?.name} is not an image`);
+			}
+		});
+		setFiles(newFiles);
+		setFileErrs(newErrs);
+		const reader = new FileReader();
+		reader.onload = (event) => {
+			const dataURL = event.target.result;
+			setFormData((prevFormData) => ({
+				...prevFormData,
+				userAvatarImg: dataURL,
+			}));
+		};
+		reader.readAsDataURL(newFiles[0]);
 	};
 
 	//submit Handeler
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if (!values.password) {
+
+		if (!formData.password) {
 			// alert no password
 			alert('Password cannot be empty');
 			return;
 		}
 		dispatch(
 			updateUserProfileAction({
-				...values,
-				userAvatarImg: files,
+				...formData,
+				files,
 			})
 		);
 	};
@@ -74,15 +89,19 @@ export default function SettingPage() {
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full flex items-center gap-x-8">
 									<img
-										onChange={onChange}
-										src={
-											'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-										}
+										src={formData.userAvatarImg}
+										name="userAvatarImg"
 										alt="user avatar"
 										className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
 									/>
 									<div>
-										<input type="file" id="file" className="sr-only" />
+										<input
+											onChange={fileHandleChange}
+											name={formData.userAvatarImg}
+											type="file"
+											id="file"
+											className="sr-only"
+										/>
 										<label htmlFor="file">
 											<span
 												type="button"
@@ -103,7 +122,7 @@ export default function SettingPage() {
 										<div className="flex rounded-md bg-dark/5 ring-1 ring-inset ring-dark/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
 											<input
 												onChange={onChange}
-												value={values.username}
+												value={formData.username}
 												type="text"
 												name="username"
 												id="username"
@@ -122,7 +141,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<input
 											onChange={onChange}
-											value={values.email}
+											value={formData.email}
 											id="email"
 											name="email"
 											type="email"
@@ -157,7 +176,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<textarea
 											onChange={onChange}
-											value={values.bio}
+											value={formData.bio}
 											id="about"
 											name="bio"
 											rows={3}
@@ -192,7 +211,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<input
 											onChange={onChange}
-											value={values.password}
+											value={formData.password}
 											id="new-password"
 											name="password"
 											type="password"
@@ -209,7 +228,7 @@ export default function SettingPage() {
 									<div className="mt-2">
 										<input
 											onChange={onChange}
-											value={values.password}
+											value={formData.password}
 											id="confirm-password"
 											name="password"
 											type="password"

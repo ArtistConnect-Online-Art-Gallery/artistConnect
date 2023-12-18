@@ -50,11 +50,7 @@ export default function ProfilePage() {
 
 				<div className="relative flex justify-center items-center flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
 					<span className="relative flex justify-center -mt-14">
-						<img
-							className="h-32 w-32 rounded-full"
-							src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-							alt=""
-						/>
+						<img className="h-32 w-32 rounded-full" src={profile?.user?.userAvatarImg} alt="" />
 						<span className="absolute bottom-0 right-0 block h-7 w-7 rounded-full bg-green-400 ring-2 ring-white">
 							<CheckBadgeIcon />
 						</span>
