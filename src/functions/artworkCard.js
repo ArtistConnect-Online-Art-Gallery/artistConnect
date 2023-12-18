@@ -1,7 +1,9 @@
-async function artworkCardByIdFunc(id, user, artworkImg, title, description, genre, medium) {
+import baseURL from "../utils/baseURL";
+
+export async function artworkCardByIdFunc(id, user, artworkImg, title, description, genre, medium) {
   try {
     let result = await fetch(
-      process.env.REACT_APP_BACKEND_URL + "/artworks/:id/",  
+      baseURL + "/artworks/:id/",  
       {
         method: "GET",
         headers: {
@@ -20,7 +22,6 @@ async function artworkCardByIdFunc(id, user, artworkImg, title, description, gen
   }
 }
 
-module.exports = { artworkCardByIdFunc };
 
 
 

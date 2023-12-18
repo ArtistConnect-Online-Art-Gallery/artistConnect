@@ -83,7 +83,7 @@ function useArtworkApp(artworkId) {
 					<div className="flex space-x-4">
 						<button className="flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">
 							{/* Like Icon */}
-							<HeartIcon className="w-6 h-6 " />
+							<HeartIcon className="w-6 h-6 "/>
 						</button>
 						<button
 							onClick={openPopup}
