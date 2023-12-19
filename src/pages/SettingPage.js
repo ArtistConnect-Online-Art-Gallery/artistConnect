@@ -3,6 +3,8 @@ import UserHeader from '../components/UserHeader';
 import { useEffect, useState } from 'react';
 import { getUserProfileAction, updateUserProfileAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
+import { FailedMessage, UpdateProfileSuccess } from '../utils/alert';
+import LoadingComp from '../components/LoadingComp';
 
 export default function SettingPage() {
 	//dispatch
@@ -12,7 +14,7 @@ export default function SettingPage() {
 		dispatch(getUserProfileAction());
 	}, [dispatch]);
 	//get data from store
-	const { error, loading, profile } = useSelector((state) => state?.users);
+	const { isUpdated, error, loading, profile, isAdded } = useSelector((state) => state?.users);
 	//get orders
 
 	const [formData, setFormData] = useState({
@@ -75,6 +77,7 @@ export default function SettingPage() {
 	return (
 		<>
 			<UserHeader />
+
 			<div className="flex justify-center items-center">
 				<div className="divide-y divide-dark/5">
 					<div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
@@ -84,6 +87,7 @@ export default function SettingPage() {
 								Use a permanent address where you can receive mail.
 							</p>
 						</div>
+						{isUpdated && <UpdateProfileSuccess />}
 
 						<form onSubmit={onSubmit} className="md:col-span-2">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
@@ -268,6 +272,7 @@ export default function SettingPage() {
 					</div>
 				</div>
 			</div>
+
 			<Footer />
 		</>
 	);

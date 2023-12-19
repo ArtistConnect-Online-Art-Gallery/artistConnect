@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import baseURL from '../../utils/baseURL';
-import { resetErrAction } from './globalActions/globalActions';
+import { resetErrAction, resetSuccessAction } from './globalActions/globalActions';
 
 const initialState = {
 	loading: false,
@@ -182,6 +182,12 @@ const usersSlice = createSlice({
 			state.loading = false;
 			state.isUpdated = false;
 			state.error = action.payload;
+		});
+
+		//Reset success
+		builder.addCase(resetSuccessAction.pending, (state, action) => {
+			state.isAdded = false;
+			state.isUpdated = false;
 		});
 	},
 });

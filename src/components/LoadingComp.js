@@ -9,7 +9,7 @@ const LoadingComp = () => {
 				justifyContent: 'center',
 				alignItems: 'center',
 			}}>
-			<ReactLoading type="spinningBubbles" color="purple" />
+			<ReactLoading type="spinningBubbles" color="blue" />
 		</div>
 	);
 };
