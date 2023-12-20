@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import { uploadArtworkAction } from '../redux/slices/artworks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,8 +8,6 @@ import { UploadSuccess, FailedMessage } from '../utils/alert';
 import LoadingCamp from './LoadingComp';
 
 export default function FileUploadForm({ onClose }) {
-	const [isUploadSuccess, setIsUploadSuccess] = useState(false);
-
 	//animated components for react-select
 	const animatedComponents = makeAnimated();
 	const dispatch = useDispatch();
