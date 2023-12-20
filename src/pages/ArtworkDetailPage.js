@@ -45,22 +45,21 @@ export default function ArtworkDetailPage() {
 						/>
 
 						{/* Exclamation Icon */}
-						<button className="absolute top-0 right-0 mt-2 mr-10">
+						{/* <button className="absolute top-0 right-0 mt-2 mr-10">
 							<XMarkIcon className="w-6 h-6 text-gray-500" />
-						</button>
-						<button className="absolute top-0 right-0 mt-2 mr-2">
+						</button> */}
+						{/* <button className="absolute top-0 right-0 mt-2 mr-2">
 							<ExclamationTriangleIcon className="w-6 h-6 text-gray-500" />
-						</button>
+						</button> */}
 
 						{/* Heart Icon */}
-						<button className="absolute bottom-0 right-0 mb-2 mr-12 flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">
+						{/* <button className="absolute bottom-0 right-0 mb-2 mr-12 flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">
 							<HeartIcon className="w-6 h-6" />
-						</button>
+						</button> */}
 						{/* Comment Icon */}
-						<button
-							onClick={openPopup}
-							className="absolute bottom-0 right-0 mb-2 mr-2 flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
-							<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6" />
+						<button onClick={openPopup}>
+							{/* // className="absolute bottom-0 right-0 mb-2 mr-2 flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
+							// <ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6" /> */}
 						</button>
 						{showPopup && <CommentPopup onClose={closePopup} />}
 					</div>
