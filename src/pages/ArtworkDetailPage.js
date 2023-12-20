@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+// import { artworks } from '../components/ArtworksCard';
 import {
 	HeartIcon,
 	ChatBubbleOvalLeftEllipsisIcon,
