@@ -47,20 +47,24 @@ export default function ArtworksCard({ artworkId }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
   
 	// Get artwork information by ID
-	const artworkById = useArtworkApp(artworkId);
+	const artworkById = useArtworkApp(artworkId);  
   
 	if (!artworkById) {
 	  // Render loading state or handle accordingly
 	  return <div>Loading...</div>;
-	}
-	return (
+	}  
+	
+	
+	return ( 
+		
 		<div key={artworkById.artwork.user} className="group relative">
-
+			
 			<img src={artworkById.artwork.artworkImg} 
 			alt={artworkById.title || 'Artwork Image'}
 			className="w-full h-auto object-cover rounded-lg" 
 			/>
-			<div className="absolute top-0 right-0 mt-2 mr-2">
+			<div className="absolute top-0 right-0 mt-2 mr-2"> 
+				
 				<button>
 					<XMarkIcon className="w-6 h-6 mr-2 text-gray-500" />
 				</button>
@@ -74,7 +78,7 @@ export default function ArtworksCard({ artworkId }) {
 						<h3 className="text-lg hover:underline font-semibold">{artworkById.artwork.title}</h3>
 					</Link>
 					<p className="text-sm text-gray-500">{artworkById.artwork.user.username}</p>
-					<p className="text-sm text-gray-600">{artworkById.artwork.description}</p>
+					<p className="text-sm text-gray-600">{artworkById.artwork.description}</p> 
 				</button>
 
 				<div className="flex justify-between mt-2">

@@ -76,10 +76,10 @@ export default function ArtworkDetailPage() {
 					<div className="border border-gray-300 rounded-lg mt-3">
 						<div className="px-4 py-3 text-gray-600">
 							<p>
-								<strong>Genre:</strong> {selectedArtwork.genre}
+								<strong>Genre:</strong> {selectedArtwork.artwork.genre}
 							</p>
 							<p>
-								<strong>Medium:</strong> {selectedArtwork.medium}
+								<strong>Medium:</strong> {selectedArtwork.artwork.medium}
 							</p>
 						</div>
 					</div>
