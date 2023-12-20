@@ -1,13 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { XCircleIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { createCommentAction } from '../redux/slices/comments';
 
 export default function CommentPopup({ onClose }) {
 	const dispatch = useDispatch();
-	//get params
-	const { id } = useParams();
 	//---form data---
 	const [formData, setFormData] = useState({
 		content: '',
@@ -20,16 +19,16 @@ export default function CommentPopup({ onClose }) {
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
+		dispatch(createCommentAction({ content: formData.content, id: '' }));
 	};
 
 	return (
-		<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 backdrop-filter backdrop-blur-md">
-			<div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl md:max-w-lg lg:max-w-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
+		<div className="fixed top-0 left-0 w-full h-full flex items-center bg-[#fae6d0] justify-center z-50 backdrop-filter backdrop-blur-md">
+			<div className="relative transform  overflow-hidden rounded-lg bg-white text-left shadow-xl md:max-w-lg lg:max-w-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
 				<div className="flex w-full h-full space-x-2 ">
 					<div>
 						<img
-							className="inline-block h-12 w-12 rounded-full"
+							className="inline-block m-2 h-12 w-12 rounded-full"
 							src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
 							alt=""
 						/>
@@ -63,8 +62,8 @@ export default function CommentPopup({ onClose }) {
 									<div className="flex items-center">
 										{/* close button */}
 										<button
-											type="button"
 											onClick={onClose}
+											type="button"
 											className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
 											<XCircleIcon className="w-6 h-6 " />
 										</button>

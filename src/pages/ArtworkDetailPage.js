@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { artworks } from '../components/ArtworksCard';
+import { Link } from 'react-router-dom';
 import {
 	HeartIcon,
 	ChatBubbleOvalLeftEllipsisIcon,
@@ -65,11 +65,13 @@ export default function ArtworkDetailPage({ artwork }) {
 						</button>
 						{/* Comment Icon */}
 						<button
-							onClick={openPopup}
+							// onClick={openPopup}
 							className="absolute bottom-0 right-0 mb-2 mr-2 flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
-							<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6" />
+							<Link to={`/comments/${id}`}>
+								<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6" />
+							</Link>
 						</button>
-						{showPopup && <CommentPopup onClose={closePopup} />}
+						{showPopup && <CommentPopup onClose={closePopup} artworkId={id} />}
 					</div>
 					<div className="border border-gray-300 rounded-lg mt-3">
 						<div className="px-4 py-3">

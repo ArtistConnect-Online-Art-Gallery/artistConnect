@@ -19,7 +19,7 @@ export const createCommentAction = createAsyncThunk(
 	'comment/create',
 	async (payload, { rejectWithValue, getState, dispatch }) => {
 		try {
-			const { content, id } = payload;
+			const { content, artworkID } = payload;
 
 			//get token from localstorage
 			const token = getState()?.users?.userAuth?.userInfo?.token;
@@ -28,8 +28,7 @@ export const createCommentAction = createAsyncThunk(
 					Authorization: `Bearer ${token}`,
 				},
 			};
-
-			const { data } = await axios.post(`${baseURL}/${id}`, { content }, config);
+			const { data } = await axios.post(`${baseURL}/comments/${artworkID}`, { content }, config);
 			return data;
 		} catch (error) {
 			console.log(error);
