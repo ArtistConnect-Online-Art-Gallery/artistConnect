@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { artworks } from '../components/ArtworksCard';
 import {
 	HeartIcon,
 	ChatBubbleOvalLeftEllipsisIcon,
@@ -40,10 +39,6 @@ export default function ArtworkDetailPage({ artwork }) {
 
 		fetchArtworById();
 	}, [id]);
-
-	// if (!selectedArtwork) {
-	// 	return <div>Artwork not found!</div>;
-	// }
 
 	return (
 		<>
