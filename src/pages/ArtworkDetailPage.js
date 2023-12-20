@@ -74,7 +74,7 @@ export default function ArtworkDetailPage({ artwork }) {
 					<div className="border border-gray-300 rounded-lg mt-3">
 						<div className="px-4 py-3">
 							<h3 className="text-lg font-semibold">{selectedArtwork.title}</h3>
-							<p className="text-sm text-gray-500">{selectedArtwork.title}</p>
+							<p className="text-sm text-gray-500">{selectedArtwork?.user?.username}</p>
 						</div>
 					</div>
 
