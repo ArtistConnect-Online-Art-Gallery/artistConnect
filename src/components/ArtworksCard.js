@@ -41,9 +41,9 @@ function useArtworkApp(artworkId) {
 	}, [artworkId]);
   
 	return artworkById;
-  }
+}
   
-  export default function ArtworksCard({ artworkId }) {
+export default function ArtworksCard({ artworkId }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
   
 	// Get artwork information by ID
@@ -53,12 +53,10 @@ function useArtworkApp(artworkId) {
 	  // Render loading state or handle accordingly
 	  return <div>Loading...</div>;
 	}
-  
-
 	return (
-		<div key={artworkById.user} className="group relative">
+		<div key={artworkById.artwork.user} className="group relative">
 
-			<img src={artworkById.artworkImg} 
+			<img src={artworkById.artwork.artworkImg} 
 			alt={artworkById.title || 'Artwork Image'}
 			className="w-full h-auto object-cover rounded-lg" 
 			/>
@@ -72,11 +70,11 @@ function useArtworkApp(artworkId) {
 			</div>
 			<div className="bg-white bg-opacity-80 py-4 flex justify-between">
 				<button className="text-left ">
-					<Link to={`/artworks/${artworkById.id}`}>
-						<h3 className="text-lg hover:underline font-semibold">{artworkById.title}</h3>
+					<Link to={`/artworks/${artworkById.artwork._id}`}>
+						<h3 className="text-lg hover:underline font-semibold">{artworkById.artwork.title}</h3>
 					</Link>
-					<p className="text-sm text-gray-500">{artworkById.user}</p>
-					<p className="text-sm text-gray-600">{artworkById.description}</p>
+					<p className="text-sm text-gray-500">{artworkById.artwork.user.username}</p>
+					<p className="text-sm text-gray-600">{artworkById.artwork.description}</p>
 				</button>
 
 				<div className="flex justify-between mt-2">

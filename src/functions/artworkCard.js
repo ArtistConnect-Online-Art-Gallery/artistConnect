@@ -3,7 +3,7 @@ import baseURL from "../utils/baseURL";
 export async function artworkCardByIdFunc(id, user, artworkImg, title, description, genre, medium) {
   try {
     let result = await fetch(
-      baseURL + "/artworks/:id/",  
+      baseURL + "/artworks/6580176a9c6aceaff9862869",  
       {
         method: "GET",
         headers: {
