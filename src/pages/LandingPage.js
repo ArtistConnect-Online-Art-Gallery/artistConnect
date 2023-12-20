@@ -16,8 +16,8 @@ export default function LandingPage() {
 					url: `${baseURL}/artworks`,
 				});
 
-				// Update this line to set the artworks array from the response
-				setArtworks(response.data.artworks); // Access the artworks array from the response
+				// Access the artworks array from the response
+				setArtworks(response.data.artworks);
 			} catch (error) {
 				console.error(error);
 			}

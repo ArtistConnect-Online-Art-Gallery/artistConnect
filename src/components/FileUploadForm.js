@@ -66,6 +66,7 @@ export default function FileUploadForm({ onClose }) {
 		genre: '',
 		medium: '',
 		title: '',
+		username: '',
 	});
 
 	//upload artwork image
@@ -105,6 +106,7 @@ export default function FileUploadForm({ onClose }) {
 				file,
 				genre: genreOption,
 				medium: mediumOption,
+				username: formData.username,
 			})
 		);
 		setFormData({

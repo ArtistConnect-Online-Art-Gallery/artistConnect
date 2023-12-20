@@ -19,7 +19,7 @@ export const uploadArtworkAction = createAsyncThunk(
 	'artworks/upload',
 	async (payload, { rejectWithValue, getState, dispatch }) => {
 		try {
-			const { title, description, genre, medium, file } = payload;
+			const { title, description, genre, medium, file, username } = payload;
 
 			//get token from localstorage
 			const token = getState()?.users?.userAuth?.userInfo?.token;
@@ -36,6 +36,7 @@ export const uploadArtworkAction = createAsyncThunk(
 			formData.append('genre', genre);
 			formData.append('medium', medium);
 			formData.append('file', file);
+			formData.append('username', username);
 
 			//make the http request
 			const { data } = await axios.post(`${baseURL}/artworks/upload`, formData, config);
