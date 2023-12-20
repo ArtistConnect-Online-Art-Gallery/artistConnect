@@ -3,7 +3,6 @@ import Footer from '../components/Footer';
 import { CheckBadgeIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import FileUploadForm from '../components/FileUploadForm';
-import ArtworksCard from '../components/ArtworksCard';
 import { getUserProfileAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';

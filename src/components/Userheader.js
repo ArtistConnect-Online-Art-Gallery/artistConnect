@@ -13,6 +13,7 @@ const navigation = [
 ];
 const userNavigation = [
 	{ name: 'Your Profile', to: '/profile' },
+	{ name: 'My Gallery', to: '/gallery' },
 	{ name: 'Settings', to: '/settings' },
 	{ name: 'Sign out', to: '/' },
 ];
