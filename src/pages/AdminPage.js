@@ -5,7 +5,7 @@
 
 // export default function AdminPage() {
 // 	// Filter reported artworks
-// 	const reportedArtworks = artworks.filter((artwork) => artwork.report);
+// 	// const reportedArtworks = artworks.filter((artwork) => artwork.report);
 
 // 	// Filter reported comments
 // 	const reportedComments = comments.filter((comment) => comment.report);
@@ -19,11 +19,11 @@
 // 				<div className="mx-auto  max-w-3xl ">
 // 					<div className="m-4">
 // 						<h2 className="text-2xl font-bold mb-4 border-gray-300 pb-2">Reported Artworks</h2>
-// 						<div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+// 						{/* <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
 // 							{reportedArtworks.map((artwork, index) => (
 // 								<ArtworksCard key={index} artwork={artwork} />
 // 							))}
-// 						</div>
+// 						</div> */}
 // 					</div>
 // 					<hr className="my-8 border-t border-gray-300" />
 // 					<div className="m-4">
