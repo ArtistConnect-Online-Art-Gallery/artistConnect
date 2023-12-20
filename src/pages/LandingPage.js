@@ -1,31 +1,9 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ArtworksCard from '../components/ArtworksCard';
+import ArtworksGallery from '../components/ArtworksGallery';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import baseURL from '../utils/baseURL';
+
 export default function LandingPage() {
-	const [artworks, setArtworks] = useState([]);
-
-	useEffect(() => {
-		async function fetchAllArtwork() {
-			try {
-				const response = await axios({
-					method: 'GET',
-					url: `${baseURL}/artworks`,
-				});
-
-				// Access the artworks array from the response
-				setArtworks(response.data.artworks);
-			} catch (error) {
-				console.error(error);
-			}
-		}
-
-		fetchAllArtwork();
-	}, []);
-
 	return (
 		<div className="bg-white">
 			{/* Header */}
@@ -79,11 +57,7 @@ export default function LandingPage() {
 					</div>
 				</div>
 				<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-					<div className="bg-white grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-						{Object.values(artworks).map((artwork, index) => (
-							<ArtworksCard key={artwork.id} artwork={artwork} />
-						))}
-					</div>
+					<ArtworksGallery />
 				</div>
 			</main>
 			{/* Footer */}
