@@ -1,9 +1,25 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function CommentPopup({ onClose }) {
-	//when user click send button or delete button -close the popup
-	const handSend = (event) => {
-		event.preventDefault();
+	const dispatch = useDispatch();
+	//get params
+	const { id } = useParams();
+	//---form data---
+	const [formData, setFormData] = useState({
+		content: '',
+	});
+
+	//onChange
+	const handleOnChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
 		onClose();
 	};
 
@@ -18,18 +34,18 @@ export default function CommentPopup({ onClose }) {
 					/>
 				</div>
 				<div className="w-4/12">
-					<form action="submit" className="relative  ">
+					<form onSubmit={handleOnSubmit} action="submit" className="relative ">
 						<div className="overflow-hidden rounded-lg shadow-sm ring-2 ring-inset focus-within:ring-indigo-900 ">
 							<label htmlFor="comment" className="sr-only ">
 								Add your comment
 							</label>
 							<textarea
+								onChange={handleOnChange}
+								value={formData.content}
 								rows={12}
-								name="comment"
-								id="comment"
+								name="content"
 								className="block w-full resize-none border-0 py-1.5 text-large bg-transparent placeholder:text-gray-800 focus:ring-0 sm:text-sm sm:leading-6 indent-2"
 								placeholder="Add your comment..."
-								defaultValue={''}
 							/>
 
 							{/* Spacer element to match the height of the toolbar */}
@@ -46,7 +62,6 @@ export default function CommentPopup({ onClose }) {
 								<div className="flex items-center">
 									{/* delete button */}
 									<button
-										onClick={handSend}
 										type="submit"
 										className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
 										<svg
@@ -68,10 +83,7 @@ export default function CommentPopup({ onClose }) {
 
 							{/* sendButton */}
 							<div>
-								<button
-									type="submit"
-									onClick={handSend}
-									className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+								<button className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
