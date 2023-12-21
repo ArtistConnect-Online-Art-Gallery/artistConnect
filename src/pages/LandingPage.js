@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ArtworksGallery from '../components/ArtworksGallery';
+import ArtworksGalleryHome from '../components/ArtworksGalleryHome';
 import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
@@ -57,7 +57,7 @@ export default function LandingPage() {
 					</div>
 				</div>
 				<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-					<ArtworksGallery />
+					<ArtworksGalleryHome/>
 				</div>
 			</main>
 			{/* Footer */}

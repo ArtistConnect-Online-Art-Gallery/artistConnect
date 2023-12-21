@@ -4,7 +4,7 @@ import GalleryButtons from '../components/GalleryButtons';
 import { useEffect, useState } from 'react';
 import baseURL from '../utils/baseURL';
 import axios from 'axios';
-import ArtworksGallery from '../components/ArtworksGallery';
+import ArtworksGallery from '../components/ArtworksGalleryExplore';
 
 export default function GalleryPage() {
 	return (

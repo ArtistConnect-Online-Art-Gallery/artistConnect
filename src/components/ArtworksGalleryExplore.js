@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import baseURL from '../utils/baseURL';
-import ArtworksCard from '../components/ArtworksCard';
+import ArtworksCard from './ArtworksCard';
 import SearchBar from './SearchBar';
 
-function ArtworksGallery() {
+function ArtworksGalleryExplore() {
   const [artworks, setArtworks] = useState([]);
   const [filteredArtworks, setFilteredArtworks] = useState([]);
 
@@ -20,7 +20,8 @@ function ArtworksGallery() {
         // Access the artworks array from the response
         const allArtworks = response.data.artworks;
         setArtworks(allArtworks);
-        setFilteredArtworks(allArtworks); // Initialize filteredArtworks with all artworks
+        setFilteredArtworks(allArtworks); // Initialize filteredArtworks with all artworks 
+		
       } catch (error) {
         console.error(error);
       }
@@ -55,4 +56,4 @@ function ArtworksGallery() {
   );
 }
 
-export default ArtworksGallery;
+export default ArtworksGalleryExplore;
