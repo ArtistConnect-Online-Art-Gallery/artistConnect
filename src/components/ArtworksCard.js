@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import { usePopup } from '../hooks/usePopup';
 
 export default function ArtworksCard({ artwork }) {
+	const { showPopup, openPopup, closePopup } = usePopup();
+
 	const { artworkImg, title, description, id } = artwork;
 	return (
 		<>
@@ -37,12 +39,15 @@ export default function ArtworksCard({ artwork }) {
 								{/* Like Icon */}
 								<HeartIcon className="w-6 h-6 " />
 							</button>
-							<button className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
-								<Link to={`/comments/${artwork?.id}`}>
-									{/* Comment Icon */}
-									<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
-								</Link>
+							<button
+								onClick={openPopup}
+								className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
+								{/* <Link to={`/comments/${artwork?.id}`}> */}
+								{/* Comment Icon */}
+								<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
+								{/* </Link> */}
 							</button>
+							{showPopup && <CommentPopup onClose={closePopup} artworkID={id} />}
 						</div>
 					</div>
 				</div>
