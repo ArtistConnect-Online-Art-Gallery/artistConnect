@@ -1,13 +1,14 @@
+// SearchBar.js
 import React, { useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
   const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchValue(value);
-    console.log(value);
+    onSearch(value); // Notify parent component about the search value
   };
 
   return (
