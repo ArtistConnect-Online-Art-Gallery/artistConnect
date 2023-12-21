@@ -7,6 +7,7 @@ import { createCommentAction } from '../redux/slices/comments';
 
 export default function CommentPopup({ onClose }) {
 	const dispatch = useDispatch();
+	const { id } = useParams();
 	//---form data---
 	const [formData, setFormData] = useState({
 		content: '',
@@ -19,11 +20,16 @@ export default function CommentPopup({ onClose }) {
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
-		dispatch(createCommentAction({ content: formData.content, id: '' }));
+		dispatch(createCommentAction({ content: formData.content, id }));
 	};
 
 	return (
-		<div className="fixed top-0 left-0 w-full h-full flex items-center bg-[#fae6d0] justify-center z-50 backdrop-filter backdrop-blur-md">
+		<div
+			className="fixed bg-cover bg-center top-0 left-0 w-full h-full flex items-center justify-center z-50 backdrop-filter backdrop-blur-md"
+			style={{
+				backgroundImage:
+					'url("https://images.unsplash.com/photo-1701970047560-085f3fcff0ba?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=marek-piwnicki-pdCNgF3RFTk-unsplash.jpg")',
+			}}>
 			<div className="relative transform  overflow-hidden rounded-lg bg-white text-left shadow-xl md:max-w-lg lg:max-w-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
 				<div className="flex w-full h-full space-x-2 ">
 					<div>
