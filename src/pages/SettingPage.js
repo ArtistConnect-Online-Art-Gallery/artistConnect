@@ -22,7 +22,6 @@ export default function SettingPage() {
 		email: profile?.user?.email,
 		bio: profile?.user?.bio,
 		password: '',
-		userAvatarImg: profile?.user?.userAvatarImg,
 	});
 
 	//onChange Handeler
@@ -44,8 +43,13 @@ export default function SettingPage() {
 		if (!newFile?.type?.startsWith('image/')) {
 			setFileErr(`${newFile?.name} is not an image`);
 		}
-
 		setFile(newFile);
+		// Update only if a new image is selected
+		if (!newFile) {
+			setFormData({ ...formData });
+		} else {
+			setFormData({ ...formData, file: newFile });
+		}
 	};
 	//submit Handeler
 	const onSubmit = (e) => {
@@ -67,7 +71,7 @@ export default function SettingPage() {
 	return (
 		<>
 			<UserHeader />
-
+			{error && <FailedMessage message={error?.message} />}
 			<div className="flex justify-center items-center">
 				<div className="divide-y divide-dark/5">
 					<div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
@@ -83,23 +87,17 @@ export default function SettingPage() {
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full flex items-center gap-x-8">
 									<img
-										src={profile?.user?.userAvatarImg}
+										src={formData.userAvatarImg || profile?.user?.userAvatarImg}
 										name="userAvatarImg"
 										alt="user avatar"
 										className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
 									/>
 									<div>
-										<input
-											onChange={fileHandleChange}
-											value={formData.file}
-											name="userAvatarImg"
-											type="file"
-											id="file"
-											className="sr-only"
-										/>
+										<input onChange={fileHandleChange} name="userAvatarImg" type="file" id="file" className="sr-only" />
 										<label htmlFor="file">
 											<span
 												type="button"
+												disabled={fileErr?.length > 0}
 												className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold hover:bg-indigo-400 text-white shadow-sm">
 												Change avatar
 											</span>
