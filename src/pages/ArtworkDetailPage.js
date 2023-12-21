@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import {
 	HeartIcon,
 	ChatBubbleOvalLeftEllipsisIcon,
@@ -15,6 +14,8 @@ import CommentCard from '../components/CommentCard';
 import axios from 'axios';
 import { useState } from 'react';
 import baseURL from '../utils/baseURL';
+import { fetchCommentsByArtworkId } from '../redux/slices/comments';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function ArtworkDetailPage({ artwork }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
@@ -22,6 +23,7 @@ export default function ArtworkDetailPage({ artwork }) {
 	const [selectedArtwork, setSelectedArtwork] = useState('');
 	const { id } = useParams();
 
+	//fetch artwork by id
 	useEffect(() => {
 		async function fetchArtworById() {
 			try {
@@ -32,6 +34,7 @@ export default function ArtworkDetailPage({ artwork }) {
 
 				// Update this line to set the artworks array from the response
 				setSelectedArtwork(response.data.artwork);
+				console.log('selected artwork', selectedArtwork);
 				console.log(response.data);
 			} catch (error) {
 				console.error(error);
@@ -41,6 +44,16 @@ export default function ArtworkDetailPage({ artwork }) {
 		fetchArtworById();
 	}, [id]);
 
+	// //dispatch fetch comments by artwork id action
+	// const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	dispatch(fetchCommentsByArtworkId({ id }));
+	// }, [id, dispatch]);
+	// //get data use selector
+	// const { comments } = useSelector((state) => state.comments);
+
+	// const { comments } = selectedArtwork.artwork;
+	const { comments } = selectedArtwork;
 	return (
 		<>
 			{' '}
@@ -75,13 +88,13 @@ export default function ArtworkDetailPage({ artwork }) {
 					</div>
 					<div className="border border-gray-300 rounded-lg mt-3">
 						<div className="px-4 py-3">
-							<h3 className="text-lg font-semibold">{selectedArtwork.title}</h3>
-							<p className="text-sm text-gray-500">{selectedArtwork.username?.username}</p>
+							<h3 className="text-lg font-semibold">Title: {selectedArtwork.title}</h3>
+							<p className="text-sm text-gray-500">Author: {selectedArtwork.user?.username}</p>
 						</div>
 					</div>
 
 					<div className="border border-gray-300 rounded-lg mt-3">
-						<div className="px-4 py-3 text-gray-600">{selectedArtwork.description}</div>
+						<div className="px-4 py-3 text-gray-600">Description: {selectedArtwork.description}</div>
 					</div>
 					<div className="border border-gray-300 rounded-lg mt-3">
 						<div className="px-4 py-3 text-gray-600">
@@ -94,12 +107,14 @@ export default function ArtworkDetailPage({ artwork }) {
 						</div>
 					</div>
 				</div>
-				{/* comment div
+				{/* comment div */}
 				<div className=" w-full sm:w-2/5 p-8 mt-8 sm:mt-0">
-					{selectedArtworkComments.map((comment) => (
-						<CommentCard comment={comment} />
-					))}
-				</div> */}
+					{comments && comments.length > 0 ? (
+						comments.map((comment) => <CommentCard key={comment.id} comment={comment} />)
+					) : (
+						<p>No comments yet.</p>
+					)}
+				</div>
 			</div>
 			<Footer />
 		</>

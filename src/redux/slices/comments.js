@@ -37,6 +37,18 @@ export const createCommentAction = createAsyncThunk(
 	}
 );
 
+//fetch comment for artwork by id action
+export const fetchCommentsByArtworkId = createAsyncThunk(
+	'comments/fetchByArtworkId',
+	async ({ id }, { rejectWithValue, getState, dispatch }) => {
+		try {
+			const { data } = await axios.get(`${baseURL}/artworks/${id}`, { id });
+			return data;
+		} catch (error) {
+			return rejectWithValue(error?.response?.data);
+		}
+	}
+);
 //slice
 const commentsSlice = createSlice({
 	name: 'comments',
@@ -48,24 +60,37 @@ const commentsSlice = createSlice({
 		});
 		builder.addCase(createCommentAction.fulfilled, (state, action) => {
 			state.loading = false;
-			state.artwork = action.payload;
+			state.comment = action.payload;
 			state.isAdded = true;
 		});
 		builder.addCase(createCommentAction.rejected, (state, action) => {
 			state.loading = false;
-			state.artwork = null;
+			state.comment = null;
+			state.isAdded = false;
+			state.error = action.payload;
+		});
+
+		builder.addCase(fetchCommentsByArtworkId.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(fetchCommentsByArtworkId.fulfilled, (state, action) => {
+			state.loading = false;
+			state.comments = action.payload;
+			state.isAdded = false;
+		});
+		builder.addCase(fetchCommentsByArtworkId.rejected, (state, action) => {
+			state.loading = false;
+			state.comments = null;
 			state.isAdded = false;
 			state.error = action.payload;
 		});
 		//Reset err
 		builder.addCase(resetErrAction.pending, (state, action) => {
 			state.error = null;
-			state.isAdded = false;
 		});
 		//Reset success
 		builder.addCase(resetSuccessAction.pending, (state, action) => {
 			state.isAdded = false;
-			state.error = null;
 		});
 	},
 });

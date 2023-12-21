@@ -68,6 +68,7 @@ const artworksSlice = createSlice({
 			state.isAdded = false;
 			state.error = action.payload;
 		});
+
 		//Reset err
 		builder.addCase(resetErrAction.pending, (state, action) => {
 			state.error = null;
