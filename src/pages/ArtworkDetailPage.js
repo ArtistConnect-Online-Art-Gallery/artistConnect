@@ -32,13 +32,11 @@ export default function ArtworkDetailPage({ artwork }) {
 
 				// Update this line to set the artworks array from the response
 				setSelectedArtwork(response.data.artwork);
-				console.log('selected artwork', selectedArtwork);
 				console.log(response.data);
 			} catch (error) {
 				console.error(error);
 			}
 		}
-
 		fetchArtworById();
 	}, [id]);
 
