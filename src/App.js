@@ -33,7 +33,7 @@ function App() {
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />
 					<Route path="/artworks/:id" element={<ArtworkDetailPage />} />
-					<Route path="/comments/:artwokID" element={<CommentPopup />} />
+					{/* <Route path="/comments/:artwokID" element={<CommentPopup />} /> */}
 					<Route
 						path="/admin"
 						element={

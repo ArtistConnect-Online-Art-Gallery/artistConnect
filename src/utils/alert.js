@@ -40,7 +40,18 @@ export const UpdateProfileSuccess = () => {
 		dispatch(resetSuccessAction());
 	});
 };
+export const GlobalSuccessMessage = ({ message }) => {
+	const dispatch = useDispatch();
 
+	Swal.fire({
+		icon: 'success',
+		title: 'Success',
+		text: message,
+	}).then(() => {
+		// After the user closes the error pop-up, reset the error state
+		dispatch(resetSuccessAction());
+	});
+};
 export const FailedMessage = ({ message }) => {
 	const dispatch = useDispatch();
 

@@ -39,13 +39,15 @@ export default function ArtworksCard({ artwork }) {
 								{/* Like Icon */}
 								<HeartIcon className="w-6 h-6 " />
 							</button>
-							<button className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
-								<Link to={`/comments/${artwork?.id}`}>
-									{/* Comment Icon */}
-									<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
-								</Link>
-								{showPopup && <CommentPopup onClose={closePopup} artworkId={id} />}
+							<button
+								onClick={openPopup}
+								className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
+								{/* <Link to={`/comments/${artwork?.id}`}> */}
+								{/* Comment Icon */}
+								<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
+								{/* </Link> */}
 							</button>
+							{showPopup && <CommentPopup onClose={closePopup} artworkID={id} />}
 						</div>
 					</div>
 				</div>
