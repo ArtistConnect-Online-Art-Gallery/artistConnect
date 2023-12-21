@@ -3,7 +3,7 @@ import UserHeader from '../components/UserHeader';
 import { useEffect, useState } from 'react';
 import { getUserProfileAction, updateUserProfileAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
-import { FailedMessage, UpdateProfileSuccess } from '../utils/alert';
+import { FailedMessage, GlobalSuccessMessage } from '../utils/alert';
 import LoadingComp from '../components/LoadingComp';
 
 export default function SettingPage() {
@@ -25,38 +25,28 @@ export default function SettingPage() {
 		userAvatarImg: profile?.user?.userAvatarImg,
 	});
 
-	const [files, setFiles] = useState([]);
-	const [fileErrs, setFileErrs] = useState([]);
 	//onChange Handeler
 	const onChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
 	//file upload
-	const fileHandleChange = (e) => {
-		const newFiles = Array.from(e.target.files);
-		const newErrs = [];
-		newFiles.forEach((file) => {
-			if (file?.size > 1000000) {
-				newErrs.push(`${file?.name} is too large`);
-			}
-			if (!file?.type?.startsWith('image/')) {
-				newErrs.push(`${file?.name} is not an image`);
-			}
-		});
-		setFiles(newFiles);
-		setFileErrs(newErrs);
-		const reader = new FileReader();
-		reader.onload = (event) => {
-			const dataURL = event.target.result;
-			setFormData((prevFormData) => ({
-				...prevFormData,
-				userAvatarImg: dataURL,
-			}));
-		};
-		reader.readAsDataURL(newFiles[0]);
-	};
 
+	const [file, setFile] = useState(null);
+	const [fileErr, setFileErr] = useState(null);
+	//file handlechange
+	const fileHandleChange = (e) => {
+		const newFile = e.target.files[0];
+		//validation
+		if (newFile?.size > 10000000) {
+			setFileErr(`${newFile?.name} is too large`);
+		}
+		if (!newFile?.type?.startsWith('image/')) {
+			setFileErr(`${newFile?.name} is not an image`);
+		}
+
+		setFile(newFile);
+	};
 	//submit Handeler
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -69,7 +59,7 @@ export default function SettingPage() {
 		dispatch(
 			updateUserProfileAction({
 				...formData,
-				files,
+				file,
 			})
 		);
 	};
@@ -87,13 +77,13 @@ export default function SettingPage() {
 								Use a permanent address where you can receive mail.
 							</p>
 						</div>
-						{isUpdated && <UpdateProfileSuccess />}
+						{isUpdated && <GlobalSuccessMessage message="Profile update success" />}
 
 						<form onSubmit={onSubmit} className="md:col-span-2">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full flex items-center gap-x-8">
 									<img
-										src={formData.userAvatarImg}
+										src={profile?.user?.userAvatarImg}
 										name="userAvatarImg"
 										alt="user avatar"
 										className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
@@ -101,7 +91,8 @@ export default function SettingPage() {
 									<div>
 										<input
 											onChange={fileHandleChange}
-											name={formData.userAvatarImg}
+											value={formData.file}
+											name="userAvatarImg"
 											type="file"
 											id="file"
 											className="sr-only"
@@ -114,7 +105,7 @@ export default function SettingPage() {
 											</span>
 										</label>
 
-										<p className="mt-2 text-xs leading-5 text-gray-400">JPG, GIF, or PNG. 1MB max.</p>
+										<p className="mt-2 text-xs leading-5 text-gray-400">JPG, JPEG, or PNG. 1MB max.</p>
 									</div>
 								</div>
 

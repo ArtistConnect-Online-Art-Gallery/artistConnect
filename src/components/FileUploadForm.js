@@ -4,7 +4,7 @@ import { uploadArtworkAction } from '../redux/slices/artworks';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { UploadSuccess, FailedMessage } from '../utils/alert';
+import { GlobalSuccessMessage, FailedMessage } from '../utils/alert';
 import LoadingCamp from './LoadingComp';
 
 export default function FileUploadForm({ onClose }) {
@@ -70,7 +70,7 @@ export default function FileUploadForm({ onClose }) {
 	});
 
 	//upload artwork image
-	//files
+	//file
 	const [file, setFile] = useState(null);
 	const [fileErr, setFileErr] = useState(null);
 	//file handlechange
@@ -126,7 +126,7 @@ export default function FileUploadForm({ onClose }) {
 							<label className="mb-5 block text-2xl font-semibold  text-dark">Upload Artwork</label>
 							{error && <FailedMessage message={error?.message} />}
 							{fileErr && <FailedMessage message={fileErr} />}
-							{isAdded && <UploadSuccess />}
+							{isAdded && <GlobalSuccessMessage message="Artwork upload success" />}
 
 							<div className="mb-8">
 								<label

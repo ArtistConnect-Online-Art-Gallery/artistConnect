@@ -15,31 +15,6 @@ export const RgisterSuccess = () => {
 	});
 };
 
-export const UploadSuccess = () => {
-	const dispatch = useDispatch();
-
-	Swal.fire({
-		icon: 'success',
-		title: 'Success',
-		text: 'Artwork upload success',
-	}).then(() => {
-		// After the user closes the error pop-up, reset the error state
-		dispatch(resetSuccessAction());
-	});
-};
-
-export const UpdateProfileSuccess = () => {
-	const dispatch = useDispatch();
-
-	Swal.fire({
-		icon: 'success',
-		title: 'Success',
-		text: 'User profile update success',
-	}).then(() => {
-		// After the user closes the error pop-up, reset the error state
-		dispatch(resetSuccessAction());
-	});
-};
 export const GlobalSuccessMessage = ({ message }) => {
 	const dispatch = useDispatch();
 
