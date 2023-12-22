@@ -23,7 +23,7 @@ export default function ArtworkDetailPage({ artwork }) {
 
 	//fetch artwork by id
 	useEffect(() => {
-		async function fetchArtworById() {
+		async function fetchArtworkById() {
 			try {
 				const response = await axios({
 					method: 'GET',
