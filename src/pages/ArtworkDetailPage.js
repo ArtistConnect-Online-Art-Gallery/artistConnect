@@ -14,8 +14,6 @@ import CommentCard from '../components/CommentCard';
 import axios from 'axios';
 import { useState } from 'react';
 import baseURL from '../utils/baseURL';
-import { fetchCommentsByArtworkId } from '../redux/slices/comments';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function ArtworkDetailPage({ artwork }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
@@ -34,7 +32,6 @@ export default function ArtworkDetailPage({ artwork }) {
 
 				// Update this line to set the artworks array from the response
 				setSelectedArtwork(response.data.artwork);
-				console.log('selected artwork', selectedArtwork);
 				console.log(response.data);
 			} catch (error) {
 				console.error(error);
@@ -44,15 +41,7 @@ export default function ArtworkDetailPage({ artwork }) {
 		fetchArtworkById();
 	}, [id]);
 
-	// //dispatch fetch comments by artwork id action
-	// const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	dispatch(fetchCommentsByArtworkId({ id }));
-	// }, [id, dispatch]);
-	// //get data use selector
-	// const { comments } = useSelector((state) => state.comments);
-
-	// const { comments } = selectedArtwork.artwork;
+	// distructure comments from selectedArtwork
 	const { comments } = selectedArtwork;
 	return (
 		<>

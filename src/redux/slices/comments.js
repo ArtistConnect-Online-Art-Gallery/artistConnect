@@ -70,20 +70,6 @@ const commentsSlice = createSlice({
 			state.error = action.payload;
 		});
 
-		builder.addCase(fetchCommentsByArtworkId.pending, (state) => {
-			state.loading = true;
-		});
-		builder.addCase(fetchCommentsByArtworkId.fulfilled, (state, action) => {
-			state.loading = false;
-			state.comments = action.payload;
-			state.isAdded = false;
-		});
-		builder.addCase(fetchCommentsByArtworkId.rejected, (state, action) => {
-			state.loading = false;
-			state.comments = null;
-			state.isAdded = false;
-			state.error = action.payload;
-		});
 		//Reset err
 		builder.addCase(resetErrAction.pending, (state, action) => {
 			state.error = null;
@@ -91,6 +77,7 @@ const commentsSlice = createSlice({
 		//Reset success
 		builder.addCase(resetSuccessAction.pending, (state, action) => {
 			state.isAdded = false;
+			state.error = null;
 		});
 	},
 });
