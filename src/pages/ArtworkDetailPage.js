@@ -49,7 +49,7 @@ export default function ArtworkDetailPage({ artwork }) {
 			<Header />
 			<div className="bg-white mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 flex flex-col sm:flex-row justify-between items-center">
 				{/* description div */}
-				<div className="flex flex-col relative w-full sm:w-2/5">
+				<div className="flex flex-col relative w-full lg:w-1/2 px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
 					<div className="relative">
 						<img src={selectedArtwork.artworkImg} alt={''} className="h-3/4 object-cover rounded-lg" />
 
@@ -97,7 +97,10 @@ export default function ArtworkDetailPage({ artwork }) {
 					</div>
 				</div>
 				{/* comment div */}
-				<div className=" w-full sm:w-2/5 p-8 mt-8 sm:mt-0">
+				{/* <div className=" w-full   p-8 mt-8 sm:mt-0  "> */}
+				<div
+					className="w-full lg:w-1/2 px-4 py-6 sm:px-6 lg:px-8 xl:block overflow-y-auto"
+					style={{ maxHeight: '70vh' }}>
 					{comments && comments.length > 0 ? (
 						comments.map((comment) => <CommentCard key={comment.id} comment={comment} />)
 					) : (
