@@ -9,39 +9,38 @@ import MyArtworks from '../components/MyArtworks';
 import { useParams } from 'react-router-dom';
 
 export default function GalleryPage() {
-  const [artworks, setArtworks] = useState([]);
-  const { id, username } = useParams();
+	const [artworks, setArtworks] = useState([]);
+	const { id, username } = useParams();
 
-  useEffect(() => {
-    async function fetchArtworks() {
-      try {
-        const response = await axios.get(`${baseURL}/artworks/${id}`);
-        setArtworks(response.data.artworks);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+	useEffect(() => {
+		async function fetchArtworks() {
+			try {
+				const response = await axios.get(`${baseURL}/artworks/${id}`);
+				setArtworks(response.data.artworks);
+			} catch (error) {
+				console.error(error);
+			}
+		}
 
-    fetchArtworks();
-  }, [id, username]);
+		fetchArtworks();
+	}, [id, username]);
 
-  return (
-    <div className="bg-white">
-      {/* Header */}
-      <UserHeader />
-      <main>
-        <GalleryButtons />
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-          {/* Use the MyArtworks component */}
-          <MyArtworks artworks={artworks}/>
-        </div>
-      </main>
-      {/* Footer */}
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="bg-white">
+			{/* Header */}
+			<UserHeader />
+			<main>
+				<GalleryButtons />
+				<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+					{/* Use the MyArtworks component */}
+					<MyArtworks artworks={artworks} />
+				</div>
+			</main>
+			{/* Footer */}
+			<Footer />
+		</div>
+	);
 }
-
 
 // // _______________Original code ______________________
 // import UserHeader from '../components/UserHeader';

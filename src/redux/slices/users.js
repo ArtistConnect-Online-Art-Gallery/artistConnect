@@ -151,6 +151,8 @@ const usersSlice = createSlice({
 		//logout
 		builder.addCase(signoutAction.fulfilled, (state, action) => {
 			state.userAuth.userInfo = null;
+			state.token = null;
+			state.profile = {};
 		});
 
 		//profile
