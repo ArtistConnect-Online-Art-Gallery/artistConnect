@@ -1,18 +1,41 @@
 import CommentPopup from './CommentPopup';
 import {
-	HeartIcon,
-	ChatBubbleOvalLeftEllipsisIcon,
-	ExclamationTriangleIcon,
-	XMarkIcon,
+  HeartIcon,
+  ChatBubbleOvalLeftEllipsisIcon,
+  ExclamationTriangleIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { usePopup } from '../hooks/usePopup';
+import baseURL from '../utils/baseURL';
+import axios from 'axios';
+import { useSelector } from 'react-redux'; 
 
 export default function ArtworksCard({ artwork }) {
-	const { showPopup, openPopup, closePopup } = usePopup();
+  const { showPopup, openPopup, closePopup } = usePopup();
+  const userToken = useSelector((state) => state.users.userAuth.userInfo.token); // Access token from Redux state
 
-	const { artworkImg, title, description, id } = artwork;
-	return (
+  const { artworkImg, title, description, id } = artwork;
+
+  const handleFavoriteClick = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    try {
+      await axios.post(`${baseURL}/artworks/${id}/favorite`, {}, config); 
+    } catch (error) {
+      console.error(error);
+      console.error('Response:', error.response);
+
+    }
+  };
+
+  return (
+
 		<>
 			<div key={id} className="group relative mb-4">
 				<img src={artworkImg} alt="" className="w-full h-auto object-cover rounded-lg" />
@@ -35,13 +58,14 @@ export default function ArtworksCard({ artwork }) {
 
 					<div className="flex justify-between mt-2">
 						<div className="flex space-x-4">
-							<button className="flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">
-								{/* Like Icon */}
+							<button
+        						onClick={handleFavoriteClick}
+        						className="flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">  
 								<HeartIcon className="w-6 h-6 " />
 							</button>
-							<button
+							<button 
 								onClick={openPopup}
-								className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
+								className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none"> 
 								{/* <Link to={`/comments/${artwork?.id}`}> */}
 								{/* Comment Icon */}
 								<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
