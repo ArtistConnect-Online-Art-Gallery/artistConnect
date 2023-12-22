@@ -41,7 +41,7 @@ export default function ArtworkDetailPage({ artwork }) {
 			}
 		}
 
-		fetchArtworById();
+		fetchArtworkById();
 	}, [id]);
 
 	// //dispatch fetch comments by artwork id action
