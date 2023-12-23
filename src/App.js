@@ -11,7 +11,7 @@ import GalleryPage from './pages/GalleryPage';
 import AdminPage from './pages/AdminPage';
 import AdminRoute from './components/routesProtector/AdminRoute';
 import AuthRoute from './components/routesProtector/AuthRoute';
-import CommentPopup from './components/CommentPopup';
+import AuthorProfile from './components/AuthorProfile';
 
 function App() {
 	return (
@@ -33,7 +33,8 @@ function App() {
 					<Route path="/settings" element={<SettingPage />} />
 					<Route path="/gallery" element={<GalleryPage />} />
 					<Route path="/artworks/:id" element={<ArtworkDetailPage />} />
-					{/* <Route path="/comments/:artwokID" element={<CommentPopup />} /> */}
+					<Route path="/users/:userId/profile" element={<AuthorProfile />} />
+
 					<Route
 						path="/admin"
 						element={
