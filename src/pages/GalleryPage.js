@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { Dialog, Disclosure, Menu, Popover, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileAction } from '../redux/slices/users';
