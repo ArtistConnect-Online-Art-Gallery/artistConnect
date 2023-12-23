@@ -56,7 +56,7 @@ export const registerUserAction = createAsyncThunk(
 );
 
 //sign out action
-export const signoutAction = createAsyncThunk(
+export const signOutAction = createAsyncThunk(
 	'users/logout',
 	async (payload, { rejectWithValue, getState, dispatch }) => {
 		//get token
@@ -160,7 +160,7 @@ const usersSlice = createSlice({
 		//reset error action
 
 		//logout
-		builder.addCase(signoutAction.fulfilled, (state, action) => {
+		builder.addCase(signOutAction.fulfilled, (state, action) => {
 			state.userAuth.userInfo = null;
 			state.token = null;
 			state.profile = {};

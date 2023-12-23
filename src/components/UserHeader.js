@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../utils/logo.png';
 import { Link } from 'react-router-dom';
-import { signoutAction } from '../redux/slices/users';
+import { signOutAction } from '../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileAction, loginUserAction } from '../redux/slices/users';
 
@@ -26,9 +26,9 @@ export default function UserHeader() {
 	const [isSignOutButtonClicked, setIsSignOutButtonClicked] = useState(false);
 
 	// logout user and remove localstorage user info
-	const signoutHandler = (item) => {
+	const signOutHandler = (item) => {
 		if (item.name === 'Sign out') {
-			dispatch(signoutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
+			dispatch(signOutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
 			setIsSignOutButtonClicked(true);
 			window.location.reload();
 			window.location.href = '/';

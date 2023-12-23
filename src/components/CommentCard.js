@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import React from 'react';
+import { ExclamationTriangleIcon} from '@heroicons/react/24/outline';
 
 //
 export default function CommentCard({ comment }) {

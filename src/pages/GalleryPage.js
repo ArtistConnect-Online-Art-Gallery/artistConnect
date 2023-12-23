@@ -25,7 +25,7 @@ export default function Example() {
 	//get my artworks and fav artworks
 	const myArtworks = profile?.user?.artworks || [];
 	const favArtworks = profile?.user?.favArtworks || [];
-
+	
 	const handleFilterClick = (filterName) => {
 		setCurrentFilter(filterName);
 	};

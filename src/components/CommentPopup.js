@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { XCircleIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
 import { createCommentAction } from '../redux/slices/comments';
