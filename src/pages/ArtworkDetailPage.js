@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
-	HeartIcon,
 	ChatBubbleOvalLeftEllipsisIcon,
 	ExclamationTriangleIcon,
 	XMarkIcon,
@@ -15,11 +14,12 @@ import axios from 'axios';
 import { useState } from 'react';
 import baseURL from '../utils/baseURL';  
 import { useSelector } from 'react-redux'; 
-import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+import { IoHeart, IoHeartOutline } from 'react-icons/io5'; 
+
 
 export default function ArtworkDetailPage({ artwork }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
-
+	const navigate = useNavigate()
 	const [selectedArtwork, setSelectedArtwork] = useState('');
 	const { id } = useParams();
 
@@ -99,7 +99,11 @@ export default function ArtworkDetailPage({ artwork }) {
 		  console.error(error);
 		
 	  };
-	};
+	}; 
+
+	const handleXClick = function(){
+		navigate(-1)
+	}
 
 	// distructure comments from selectedArtwork
 	const { comments } = selectedArtwork; 
@@ -113,11 +117,12 @@ export default function ArtworkDetailPage({ artwork }) {
 				<div className="flex flex-col relative w-full lg:w-1/2 px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
 					<div className="relative">
 						<img src={selectedArtwork.artworkImg} alt={''} className="h-3/4 object-cover rounded-lg" />
-
-						{/* Exclamation Icon */}
-						<button className="absolute top-0 right-0 mt-2 mr-10">
+						{/* X Icon */}
+						<button className="absolute top-0 right-0 mt-2 mr-10" 
+							onClick={handleXClick}>
 							<XMarkIcon className="w-6 h-6 text-gray-500" />
-						</button>
+						</button> 
+						{/* Exclamation Icon */}
 						<button className="absolute top-0 right-0 mt-2 mr-2" 
 							onClick={handleReportClick}>
 							{isReported ? ( 

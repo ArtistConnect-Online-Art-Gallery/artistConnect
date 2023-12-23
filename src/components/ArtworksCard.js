@@ -1,14 +1,14 @@
 import CommentPopup from './CommentPopup';
-import { ChatBubbleOvalLeftEllipsisIcon, ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleOvalLeftEllipsisIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { usePopup } from '../hooks/usePopup';
 import baseURL from '../utils/baseURL';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react'; 
+import { useEffect, useState } from 'react';  
 
-export default function ArtworksCard({ artwork }) {
+export default function ArtworksCard({ artwork }) { 
 	const { showPopup, openPopup, closePopup } = usePopup();
 	const userToken = useSelector((state) => state.users?.userAuth?.userInfo?.token);
 
@@ -49,7 +49,6 @@ export default function ArtworksCard({ artwork }) {
 		}
 	}; 
 
-	
 	const handleReportClick = async () => {
 		try {
 		  const config = {
@@ -69,16 +68,13 @@ export default function ArtworksCard({ artwork }) {
 		  console.error(error);
 		
 	  };
-	};
+	}; 
 
 	return (
 		<>
 			<div key={id} className="group relative mb-4">
 				<img src={artworkImg} alt="" className="w-full h-auto object-cover rounded-lg" />
 				<div className="absolute top-0 right-0 mt-2 mr-2">
-					<button>
-						<XMarkIcon className="w-6 h-6 mr-2 text-gray-500" />
-					</button>
 					<button onClick={handleReportClick}>
             			{isReported ? ( 
 						<ExclamationTriangleIcon className="w-6 h-6 text-yellow-500" />
