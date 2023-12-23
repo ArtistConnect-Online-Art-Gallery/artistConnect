@@ -2,45 +2,20 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../utils/logo.png';
 import { Link } from 'react-router-dom';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfileAction, loginUserAction } from '../redux/slices/users';
-import { Fragment, useState, useEffect } from 'react';
-import { signoutAction } from '../redux/slices/users';
+import { useDispatch } from 'react-redux';
+import { getUserProfileAction } from '../redux/slices/users';
+import { useState, useEffect } from 'react';
 import UserHeader from './UserHeader';
 const navigation = [
 	{ name: 'Home', to: '/' },
 	{ name: 'Explore', to: '/explore' },
 ];
-const userNavigation = [
-	{ name: 'Your Profile', to: '/profile' },
-	{ name: 'My Gallery', to: '/gallery' },
-	{ name: 'Settings', to: '/settings' },
-	{ name: 'Sign out', to: '/' },
-];
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ');
-}
 
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const dispatch = useDispatch();
-	const [isSignOutButtonClicked, setIsSignOutButtonClicked] = useState(false);
 
-	// logout user and remove localstorage user info
-	const signoutHandler = (item) => {
-		if (item.name === 'Sign out') {
-			dispatch(signoutAction()); // Dispatch the signout action only if the "Sign out" button is clicked
-			setIsSignOutButtonClicked(true);
-			window.location.reload();
-			window.location.href = '/';
-		}
-	};
-
-	//get data from store
-	const { error, loading, profile } = useSelector((state) => state?.users);
 	//get login user from localstorage
-
 	const user = JSON.parse(localStorage.getItem('userInfo'));
 
 	const isLoggedIn = user?.token ? true : false;
