@@ -3,7 +3,6 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
 	ChatBubbleOvalLeftEllipsisIcon,
 	ExclamationTriangleIcon,
-	XMarkIcon,
 	ArrowUturnLeftIcon,
 } from '@heroicons/react/24/outline';
 import Header from '../components/Header';

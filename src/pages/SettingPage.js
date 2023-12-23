@@ -14,7 +14,7 @@ export default function SettingPage() {
 		dispatch(getUserProfileAction());
 	}, [dispatch]);
 	//get data from store
-	const { isUpdated, error, loading, profile, isAdded } = useSelector((state) => state?.users);
+	const { isUpdated, error, loading, profile } = useSelector((state) => state?.users);
 	//get orders
 
 	const [formData, setFormData] = useState({
@@ -55,11 +55,6 @@ export default function SettingPage() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		if (!formData.password) {
-			// alert no password
-			alert('Password cannot be empty');
-			return;
-		}
 		dispatch(
 			updateUserProfileAction({
 				...formData,
@@ -144,14 +139,6 @@ export default function SettingPage() {
 									</div>
 								</div>
 							</div>
-
-							<div className="mt-8 flex">
-								<button
-									type="submit"
-									className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-									Save
-								</button>
-							</div>
 						</form>
 					</div>
 
@@ -177,14 +164,6 @@ export default function SettingPage() {
 										/>
 									</div>
 								</div>
-							</div>
-
-							<div className="mt-8 flex">
-								<button
-									type="submit"
-									className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-									Save
-								</button>
 							</div>
 						</form>
 					</div>
@@ -213,31 +192,18 @@ export default function SettingPage() {
 										/>
 									</div>
 								</div>
-
-								<div className="col-span-full">
-									<label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-dark">
-										Confirm Password
-									</label>
-									<div className="mt-2">
-										<input
-											onChange={onChange}
-											value={formData.password}
-											id="confirm-password"
-											name="password"
-											type="password"
-											autoComplete="new-password"
-											className=" indent-2 block w-full rounded-md border-0 bg-dark/5 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-dark/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-										/>
-									</div>
-								</div>
 							</div>
 
 							<div className="mt-8 flex">
-								<button
-									type="submit"
-									className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-									Save
-								</button>
+								{loading ? (
+									<LoadingComp />
+								) : (
+									<button
+										type="submit"
+										className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+										Save
+									</button>
+								)}
 							</div>
 						</form>
 					</div>

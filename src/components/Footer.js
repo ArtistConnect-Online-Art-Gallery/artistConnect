@@ -1,8 +1,6 @@
-import baseURL from "../utils/baseURL";
-
 const navigation = {
 	main: [
-		{ name: 'About', href: '/artworks/6581654f0fd8b5a80b5d24cd'},
+		{ name: 'About', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
 		{ name: 'Blog', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
 		{ name: 'Jobs', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
 		{ name: 'Press', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
@@ -89,15 +87,18 @@ export default function Footer() {
 				</nav>
 				<div className="mt-10 flex justify-center space-x-10">
 					{navigation.social.map((item) => (
-						<a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500" target="_blank" rel="noreferrer">
+						<a
+							key={item.name}
+							href={item.href}
+							className="text-gray-400 hover:text-gray-500"
+							target="_blank"
+							rel="noreferrer">
 							<span className="sr-only">{item.name}</span>
 							<item.icon className="h-6 w-6" aria-hidden="true" />
 						</a>
 					))}
 				</div>
-				<p className="mt-10 text-center text-xs leading-5 text-gray-500">
-					2023 Artist Connect
-				</p>
+				<p className="mt-10 text-center text-xs leading-5 text-gray-500">2023 Artist Connect</p>
 			</div>
 		</footer>
 	);

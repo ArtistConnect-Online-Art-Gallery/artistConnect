@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUserAction } from '../redux/slices/users';
 import React, { useEffect, useState } from 'react';
 import LoadingComp from '../components/LoadingComp';
-import { FailedMessage, RgisterSuccess } from '../utils/alert';
-import { resetErrAction, resetSuccessAction } from '../redux/slices/globalActions/globalActions';
+import { FailedMessage } from '../utils/alert';
+import { resetSuccessAction } from '../redux/slices/globalActions/globalActions';
 
 export default function Register() {
 	//dispatch
@@ -112,26 +112,6 @@ export default function Register() {
 							</div>
 						</div>
 
-						<div>
-							<div className="flex items-center justify-between">
-								<label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-									Confirm Password
-								</label>
-							</div>
-
-							<div className="mt-2">
-								<input
-									onChange={handleInput}
-									id="password"
-									value={password}
-									type="password"
-									name="password"
-									autoComplete="current-password"
-									required
-									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent-2"
-								/>
-							</div>
-						</div>
 						{/* errr */}
 						<div>
 							{loading ? (

@@ -76,6 +76,11 @@ export default function FileUploadForm({ onClose }) {
 	//file handlechange
 	const fileHandleChange = (e) => {
 		const newFile = e.target.files[0];
+
+		if (file) {
+		} else {
+			console.log('Please select a file to upload.');
+		}
 		//validation
 		if (newFile?.size > 10000000) {
 			setFileErr(`${newFile?.name} is too large`);

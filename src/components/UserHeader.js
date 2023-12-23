@@ -36,7 +36,7 @@ export default function UserHeader() {
 	};
 
 	//get data from store
-	const { error, loading, profile } = useSelector((state) => state?.users);
+	const { profile } = useSelector((state) => state?.users);
 
 	useEffect(() => {
 		dispatch(loginUserAction());

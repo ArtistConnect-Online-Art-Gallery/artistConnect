@@ -158,16 +158,13 @@ const usersSlice = createSlice({
 			state.loading = false;
 		});
 		//reset error action
-		builder.addCase(resetErrAction.pending, (state) => {
-			state.error = null;
-			state.userAuth.error = null;
-		});
 
 		//logout
 		builder.addCase(signoutAction.fulfilled, (state, action) => {
 			state.userAuth.userInfo = null;
 			state.token = null;
 			state.profile = {};
+			state.error = null;
 		});
 
 		//profile
@@ -179,7 +176,7 @@ const usersSlice = createSlice({
 			state.loading = false;
 		});
 		builder.addCase(getUserProfileAction.rejected, (state, action) => {
-			state.error = action.payload;
+			state.error = null;
 			state.loading = false;
 		});
 
@@ -216,6 +213,11 @@ const usersSlice = createSlice({
 		builder.addCase(resetSuccessAction.pending, (state, action) => {
 			state.isAdded = false;
 			state.isUpdated = false;
+		});
+
+		builder.addCase(resetErrAction.pending, (state) => {
+			state.error = null;
+			state.userAuth.error = null;
 		});
 	},
 });
