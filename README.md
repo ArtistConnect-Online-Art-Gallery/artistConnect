@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+![logo](./Logo.png) 
+# artistConnect- Front-End 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## MERN application
 
-## Available Scripts
+Netlify URL :  
 
-In the project directory, you can run:
+Heroku URL: https://artist-connect-app-a5e604cdf8ee.herokuapp.com/
 
-### `npm start`
+Front-End Repo: https://github.com/ArtistConnect-Online-Art-Gallery/artistConnect
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Server Repo: https://github.com/ArtistConnect-Online-Art-Gallery/artistConnect-server
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Part A Documentation Repo: https://github.com/ArtistConnect-Online-Art-Gallery/Documentation
 
-### `npm test`
+"Artist Connect" is a dynamic online art gallery platform designed to address the challenge of artists gaining visibility for their artworks and to facilitate connections among individuals with a shared passion for art. Built using the MERN stack (MongoDB, Express, React, Node.js), "Artist Connect" provides a user-friendly and visually appealing experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation 
 
-### `npm run build`
+Ensure that the following tools and dependencies are installed if you want to use the app locally:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Node.js 18.19.0
+* MongoDB
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Server Libraries
+### Back End
 
-### `npm run eject`
+* `bcrypt` is used for hashing our user's passwords, this library is commonly used for user authentication.
+* `bcryptjs` this library for password hashing as well, it is used in conjunction with bcrypt.
+* `cloudinary`is a cloud service that provides image management. Useful for handling and storing user's image avatars and artworks files.
+* `cors`is a middleware for Express.js that was used to manage and control access to resources on the server from different domains. It allows or restricts cross-origin HTTP requests, which is essential for security. 
+* `dotenv` Zero-dependency Node.js module that simplifies the process of loading environment variables, managing the configuration settings, API keys, database connection strings, and other sensitive information.
+* `express`is a web application framework for Node.js that helps to simplify the creation of APIs (routes for different HTTP methods) and web servers. 
+* `express-async-handler` handleS asynchronous errors in Express.js middleware and route handlers.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* `jsonwebtoken` creates and verifies JSON Web Tokens (JWT) used for secure communication between parties.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* `mongoose` is an Object Data Modeling (ODM) library for MongoDB and Node.js that helps to simplify interactions with MongoDB databases. It was used for the schemas definition and models creation, also CRUD operations middleware and more. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Front-End 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* `axios` is the library used to make HTTP requests. 
+* `tailwindcss`  utility-first CSS framework, used to styled  the front end. 
+* `reduxjs Version 2.0.1/toolkit ` is an efficient tool to develop, simplify the process of managing state in React applications.
+*`jest-dom Version 5.17.0/testing-library` matchers for validating the state of the DOM in your tests.
 
-## Learn More
+* `user-event Version 13.5.0/testing-library`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Testing 
+___
