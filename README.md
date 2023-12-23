@@ -24,6 +24,7 @@ Ensure that the following tools and dependencies are installed if you want to us
 
 
 ## Server Libraries
+### Back End
 
 * `bcrypt` is used for hashing our user's passwords, this library is commonly used for user authentication.
 * `bcryptjs` this library for password hashing as well, it is used in conjunction with bcrypt.
@@ -37,6 +38,14 @@ Ensure that the following tools and dependencies are installed if you want to us
 
 * `mongoose` is an Object Data Modeling (ODM) library for MongoDB and Node.js that helps to simplify interactions with MongoDB databases. It was used for the schemas definition and models creation, also CRUD operations middleware and more. 
 
+### Front-End 
+
+* `axios` is the library used to make HTTP requests. 
+* `tailwindcss`  utility-first CSS framework, used to styled  the front end. 
+* `reduxjs Version 2.0.1/toolkit ` is an efficient tool to develop, simplify the process of managing state in React applications.
+*`jest-dom Version 5.17.0/testing-library` matchers for validating the state of the DOM in your tests.
+
+* `user-event Version 13.5.0/testing-library`
 
 ## Testing 
 ___
