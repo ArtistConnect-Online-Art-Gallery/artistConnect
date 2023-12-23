@@ -24,6 +24,7 @@ export default function CommentPopup({ onClose, artworkID }) {
 	};
 
 	const { loading, error, isAdded } = useSelector((state) => state?.comments);
+	const { profile } = useSelector((state) => state?.users);
 	return (
 		<>
 			{error && <FailedMessage message={error?.message} />}
@@ -32,11 +33,7 @@ export default function CommentPopup({ onClose, artworkID }) {
 				<div className="relative transform  overflow-hidden rounded-lg bg-white text-left shadow-xl md:max-w-lg lg:max-w-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
 					<div className="flex w-full h-full space-x-2 ">
 						<div>
-							<img
-								className="inline-block m-2 h-12 w-12 rounded-full"
-								src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-								alt=""
-							/>
+							<img className="inline-block m-2 h-12 w-12 rounded-full" src={profile?.user?.userAvatarImg} alt="" />
 						</div>
 						<div className="w-full">
 							<form onSubmit={handleOnSubmit} action="submit" className="relative">
