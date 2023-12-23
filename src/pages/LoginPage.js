@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../redux/slices/users';
 import { useEffect } from 'react';
-import { FailedMessage, RgisterSuccess } from '../utils/alert';
+import { FailedMessage} from '../utils/alert';
 import LoadingComp from '../components/LoadingComp';
 import { resetErrAction, resetSuccessAction } from '../redux/slices/globalActions/globalActions';
 

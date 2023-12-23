@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 export default function Example() {
 	const [open, setOpen] = useState(false);
-	const [currentFilter, setCurrentFilter] = useState();
+	const [currentFilter, setCurrentFilter] = useState('');
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -97,7 +97,10 @@ export default function Example() {
 
 							<button
 								type="button"
-								className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
+								// className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
+								className={`inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden ${
+									open ? 'open-styles' : '' // Add or remove styles based on the 'open' state
+								 }`}								
 								onClick={() => setOpen(true)}>
 								Filters
 							</button>
