@@ -32,7 +32,9 @@ export default function CommentPopup({ onClose, artworkID }) {
 			<div className="fixed bg-cover bg-center top-0 left-0 w-full h-full flex items-center justify-center z-50 backdrop-filter backdrop-blur-md">
 				<div className="relative transform  overflow-hidden rounded-lg bg-white text-left shadow-xl md:max-w-lg lg:max-w-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
 					<div className="flex w-full h-full space-x-2 ">
-						<div>src={profile?.userAvatarImg}</div>
+						<div>
+							<img className="inline-block m-2 h-12 w-12 rounded-full" src={profile?.user?.userAvatarImg} alt="" />
+						</div>
 						<div className="w-full">
 							<form onSubmit={handleOnSubmit} action="submit" className="relative">
 								<div className="overflow-hidden rounded-lg shadow-sm ring-2 ring-inset focus-within:ring-indigo-900 ">
