@@ -99,7 +99,7 @@ export default function SettingPage() {
 												type="button"
 												disabled={fileErr?.length > 0}
 												className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold hover:bg-indigo-400 text-white shadow-sm">
-												Change avatar
+												Change Avatar
 											</span>
 										</label>
 
@@ -129,7 +129,7 @@ export default function SettingPage() {
 
 								<div className="col-span-full">
 									<label htmlFor="email" className="block text-sm font-medium leading-6 text-dark">
-										Email address
+										Email Address
 									</label>
 									<div className="mt-2">
 										<input
@@ -158,7 +158,7 @@ export default function SettingPage() {
 					<div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
 						<div>
 							<h2 className="text-base font-semibold leading-7 text-dark">Bio</h2>
-							<p className="mt-1 text-sm leading-6 text-gray-400">Write few sentences about yourself.</p>
+							<p className="mt-1 text-sm leading-6 text-gray-400">Write a few sentences about yourself.</p>
 						</div>
 						<form onSubmit={onSubmit} className="md:col-span-2 ">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
@@ -191,15 +191,15 @@ export default function SettingPage() {
 
 					<div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
 						<div>
-							<h2 className="text-base font-semibold leading-7 text-dark">Change password</h2>
-							<p className="mt-1 text-sm leading-6 text-gray-400">Update your password associated with your account.</p>
+							<h2 className="text-base font-semibold leading-7 text-dark">Change Password</h2>
+							<p className="mt-1 text-sm leading-6 text-gray-400">Update the password associated with your account.</p>
 						</div>
 
 						<form onSubmit={onSubmit} className="md:col-span-2">
 							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 								<div className="col-span-full">
 									<label htmlFor="new-password" className="block text-sm font-medium leading-6 text-dark">
-										New password
+										New Password
 									</label>
 									<div className="mt-2">
 										<input
@@ -216,7 +216,7 @@ export default function SettingPage() {
 
 								<div className="col-span-full">
 									<label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-dark">
-										Confirm password
+										Confirm Password
 									</label>
 									<div className="mt-2">
 										<input
@@ -244,7 +244,7 @@ export default function SettingPage() {
 
 					<div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
 						<div>
-							<h2 className="text-base font-semibold leading-7 text-dark">Delete account</h2>
+							<h2 className="text-base font-semibold leading-7 text-dark">Delete Account</h2>
 							<p className="mt-1 text-sm leading-6 text-gray-400">
 								No longer want to use our service? You can delete your account here. This action is not reversible. All
 								information related to this account will be deleted permanently.

@@ -6,7 +6,7 @@ import { getUserProfileAction } from '../redux/slices/users';
 import ArtworksCard from '../components/ArtworksCard';
 import UserHeader from '../components/UserHeader';
 import galleryimg from '../utils/gallery-img.png';
-const sortOptions = [{ name: 'Favoriate Artowrks' }, { name: 'My Artworks' }];
+const sortOptions = [{ name: 'Favourite Artworks' }, { name: 'My Artworks' }];
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
@@ -32,7 +32,7 @@ export default function Example() {
 	let displayedArtworks = [];
 	if (!currentFilter) {
 		displayedArtworks = [...myArtworks, ...favArtworks];
-	} else if (currentFilter === 'Favoriate Artowrks') {
+	} else if (currentFilter === 'Favourite Artworks') {
 		displayedArtworks = favArtworks;
 	} else if (currentFilter === 'My Artworks') {
 		displayedArtworks = myArtworks;
@@ -47,12 +47,12 @@ export default function Example() {
 						style={{
 							backgroundImage: `url(${galleryimg})`,
 							backgroundPosition: 'center', // Centers the background image
-							backgroundSize: 'cover', // Ensures the image covers the entire div
+							backgroundSize: 'cover', // Ensures the image covers the entire div 
 						}}>
-						<h1 className="text-4xl font-bold tracking-tight text-gray-900">My Gallery</h1>
-						<p className="mx-auto mt-4 max-w-3xl text-base text-gray-500">My artistic journey</p>
-					</div>
-
+					</div> 
+					< br />
+					<h1 className="text-4xl font-bold tracking-tight text-gray-900">My Gallery</h1> 
+					<br />
 					<section aria-labelledby="filter-heading" className="border-t border-gray-200 py-6">
 						<div className="flex items-center justify-between">
 							<Menu as="div" className="relative inline-block text-left">

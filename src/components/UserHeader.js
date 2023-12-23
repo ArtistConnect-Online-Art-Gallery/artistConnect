@@ -12,7 +12,7 @@ const navigation = [
 	{ name: 'Explore', to: '/explore' },
 ];
 const userNavigation = [
-	{ name: 'Your Profile', to: '/profile' },
+	{ name: 'My Profile', to: '/profile' },
 	{ name: 'My Gallery', to: '/gallery' },
 	{ name: 'Settings', to: '/settings' },
 	{ name: 'Sign out', to: '/' },
