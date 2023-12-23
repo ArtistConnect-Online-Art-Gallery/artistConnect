@@ -3,7 +3,7 @@
 
 ## MERN application
 
-Netlify URL :  
+Netlify URL : https://artist-connect.netlify.app/ 
 
 Heroku URL: https://artist-connect-app-a5e604cdf8ee.herokuapp.com/
 
