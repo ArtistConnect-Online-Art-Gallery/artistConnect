@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileAction } from '../redux/slices/users';
 import ArtworksCard from '../components/ArtworksCard';
 import UserHeader from '../components/UserHeader';
-
+import galleryimg from '../utils/gallery-img.png';
 const sortOptions = [{ name: 'Favoriate Artowrks' }, { name: 'My Artworks' }];
 
 function classNames(...classes) {
@@ -43,7 +43,13 @@ export default function Example() {
 			<UserHeader />
 			<div className="bg-gray-50">
 				<div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:max-w-7xl lg:px-8">
-					<div className="py-24">
+					<div
+						className="py-24 bg-cover"
+						style={{
+							backgroundImage: `url(${galleryimg})`,
+							backgroundPosition: 'center', // Centers the background image
+							backgroundSize: 'cover', // Ensures the image covers the entire div
+						}}>
 						<h1 className="text-4xl font-bold tracking-tight text-gray-900">My Gallery</h1>
 						<p className="mx-auto mt-4 max-w-3xl text-base text-gray-500">My artistic journey</p>
 					</div>
