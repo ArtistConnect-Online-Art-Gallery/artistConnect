@@ -6,14 +6,15 @@ import { usePopup } from '../hooks/usePopup';
 import baseURL from '../utils/baseURL';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'; 
 
 export default function ArtworksCard({ artwork }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
 	const userToken = useSelector((state) => state.users?.userAuth?.userInfo?.token);
 
 	const { artworkImg, title, description, id } = artwork;
-	const [isFavorited, setIsFavorited] = useState(false);
+	const [isFavorited, setIsFavorited] = useState(false); 
+	const [isReported, setIsReported] = useState(false); 
 
 	useEffect(() => {
 		const storedFavoritedArtworks = JSON.parse(localStorage.getItem('favoritedArtworks')) || {};
@@ -46,6 +47,28 @@ export default function ArtworksCard({ artwork }) {
 			console.error(error);
 			console.error('Response:', error.response);
 		}
+	}; 
+
+	
+	const handleReportClick = async () => {
+		try {
+		  const config = {
+			headers: {
+			  Authorization: `Bearer ${userToken}`,
+			  'Content-Type': 'application/json',
+			},
+		  };
+	
+		  const payload = {
+			artworkId: id,
+		  };
+	
+		  await axios.post(`${baseURL}/artworks/${id}/report`, payload, config);
+		  setIsReported(true); 
+		} catch (error) {
+		  console.error(error);
+		
+	  };
 	};
 
 	return (
@@ -56,9 +79,13 @@ export default function ArtworksCard({ artwork }) {
 					<button>
 						<XMarkIcon className="w-6 h-6 mr-2 text-gray-500" />
 					</button>
-					<button>
-						<ExclamationTriangleIcon className="w-6 h-6 text-gray-500" />
-					</button>
+					<button onClick={handleReportClick}>
+            			{isReported ? ( 
+						<ExclamationTriangleIcon className="w-6 h-6 text-yellow-500" />
+            			) : (
+						<ExclamationTriangleIcon className="w-6 h-6 text-gray-500 hover:text-yellow-500" />
+            			)}
+         		 	</button>
 				</div>
 				<div className="bg-white bg-opacity-80 py-4 flex justify-between">
 					<button className="text-left">
@@ -91,5 +118,5 @@ export default function ArtworksCard({ artwork }) {
 				</div>
 			</div>
 		</>
-	);
-}
+	); 
+}								
