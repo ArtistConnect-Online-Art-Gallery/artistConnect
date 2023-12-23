@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
 	HeartIcon,
 	ChatBubbleOvalLeftEllipsisIcon,
@@ -150,8 +150,14 @@ export default function ArtworkDetailPage({ artwork }) {
 					</div>
 					<div className="border border-gray-300 rounded-lg mt-3">
 						<div className="px-4 py-3">
-							<h3 className="text-lg font-semibold">Title: {selectedArtwork.title}</h3>
-							<p className="text-sm text-gray-500">Author: {selectedArtwork.user?.username}</p>
+						<h3 className="text-2xl font-semibold">Title: {selectedArtwork.title}</h3>
+							<p className="text-sm text-gray-500">
+								<Link
+									className="text-gray-600 font-semibold text-lg  hover:text-indigo-800 transition duration-300 ease-in-out hover:underline"
+									to={`/users/${selectedArtwork.user?._id}/profile`}>
+									Author:{selectedArtwork.user?.username}
+								</Link>
+							</p>
 						</div>
 					</div>
 
@@ -173,7 +179,7 @@ export default function ArtworkDetailPage({ artwork }) {
 				{/* <div className=" w-full   p-8 mt-8 sm:mt-0  "> */}
 				<div
 					className="w-full lg:w-1/2 px-4 py-6 sm:px-6 lg:px-8 xl:block overflow-y-auto"
-					style={{ maxHeight: '70vh' }}>
+					style={{ maxHeight: '50vh' }}>
 					{comments && comments.length > 0 ? (
 						comments.map((comment) => <CommentCard key={comment.id} comment={comment} />)
 					) : (
