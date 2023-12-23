@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import baseURL from '../../utils/baseURL';
 import { resetErrAction, resetSuccessAction } from './globalActions/globalActions';
+import { getUserProfileAction } from './users';
 
 //initial state
 const initialState = {
@@ -40,6 +41,8 @@ export const uploadArtworkAction = createAsyncThunk(
 
 			//make the http request
 			const { data } = await axios.post(`${baseURL}/artworks/upload`, formData, config);
+			dispatch(getUserProfileAction());
+
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -67,6 +70,10 @@ const artworksSlice = createSlice({
 			state.artwork = null;
 			state.isAdded = false;
 			state.error = action.payload;
+		});
+		builder.addCase(getUserProfileAction.fulfilled, (state, action) => {
+			// Update the artworks state
+			state.artworks = action.payload.artworks;
 		});
 
 		//Reset err
