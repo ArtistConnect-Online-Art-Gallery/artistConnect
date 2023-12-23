@@ -23,6 +23,8 @@ function classNames(...classes) {
 }
 export default function UserHeader() {
 	const dispatch = useDispatch();
+	
+	// eslint-disable-next-line 
 	const [isSignOutButtonClicked, setIsSignOutButtonClicked] = useState(false);
 
 	// logout user and remove localstorage user info
