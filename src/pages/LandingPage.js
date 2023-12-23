@@ -40,7 +40,6 @@ export default function LandingPage() {
 							</div>
 							<div className="text-center">
 								<h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Show your work.</h1>
-								<p className="mt-6 text-lg leading-8 text-gray-300">This is a simple example of a landing page</p>
 							</div>
 						</div>
 					</div>
@@ -57,7 +56,7 @@ export default function LandingPage() {
 					</div>
 				</div>
 				<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-					<ArtworksGalleryHome/>
+					<ArtworksGalleryHome />
 				</div>
 			</main>
 			{/* Footer */}
