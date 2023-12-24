@@ -1,11 +1,11 @@
 const navigation = {
 	main: [
-		{ name: 'About', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
-		{ name: 'Blog', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
-		{ name: 'Jobs', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
-		{ name: 'Press', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
-		{ name: 'Accessibility', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
-		{ name: 'Partners', href: '/artworks/6581654f0fd8b5a80b5d24cd' },
+		{ name: 'About', href: '/artworks/65878911579af1def66e0473' },
+		{ name: 'Blog', href: '/artworks/65878911579af1def66e0473' },
+		{ name: 'Jobs', href: '/artworks/65878911579af1def66e0473' },
+		{ name: 'Press', href: '/artworks/65878911579af1def66e0473' },
+		{ name: 'Accessibility', href: '/artworks/65878911579af1def66e0473' },
+		{ name: 'Partners', href: '/artworks/65878911579af1def66e0473' },
 	],
 	social: [
 		{

@@ -51,7 +51,7 @@ export default function Example() {
 				<div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:max-w-7xl lg:px-8">
 					<br />
 					<h1 className="text-4xl font-bold tracking-tight text-gray-900">My Gallery</h1>
-
+					<br />
 					<section aria-labelledby="filter-heading" className="border-t border-gray-200 py-6">
 						<div className="flex items-center justify-between">
 							<Menu as="div" className="relative inline-block text-left">
