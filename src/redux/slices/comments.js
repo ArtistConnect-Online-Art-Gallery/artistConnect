@@ -29,6 +29,7 @@ export const createCommentAction = createAsyncThunk(
 				},
 			};
 			const { data } = await axios.post(`${baseURL}/comments/${id}`, { content, id }, config);
+			dispatch(fetchCommentsByArtworkId({ id }));
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -60,19 +61,15 @@ const commentsSlice = createSlice({
 		});
 		builder.addCase(createCommentAction.fulfilled, (state, action) => {
 			state.loading = false;
+
 			state.comment = action.payload;
 			state.isAdded = true;
 		});
-		builder.addCase(fetchCommentsByArtworkId.rejected, (state, action) => {
+		builder.addCase(createCommentAction.rejected, (state, action) => {
 			state.loading = false;
 			state.comment = null;
 			state.isAdded = false;
 			state.error = action.payload;
-		});
-
-		builder.addCase(fetchCommentsByArtworkId.fulfilled, (state, action) => {
-			state.loading = false;
-			state.comment = action.payload;
 		});
 
 		//Reset err
