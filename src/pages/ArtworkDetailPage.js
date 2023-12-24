@@ -20,6 +20,8 @@ export default function ArtworkDetailPage({ artwork }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
 	const navigate = useNavigate();
 	const [selectedArtwork, setSelectedArtwork] = useState('');
+	// distructure comments from selectedArtwork
+	const comments = useSelector((state) => state.comments.comments);
 	const { id } = useParams();
 
 	//fetch artwork by id
@@ -50,6 +52,13 @@ export default function ArtworkDetailPage({ artwork }) {
 		const storedFavoritedArtworks = JSON.parse(localStorage.getItem('favoritedArtworks')) || {};
 		setIsFavorited(storedFavoritedArtworks[id] || false);
 	}, [id]);
+
+	useEffect(() => {
+		setSelectedArtwork((prevState) => ({
+			...prevState,
+			comments: comments || [],
+		}));
+	}, [comments]);
 
 	const handleFavoriteClick = async () => {
 		const config = {
@@ -102,9 +111,6 @@ export default function ArtworkDetailPage({ artwork }) {
 	const handleXClick = function () {
 		navigate(-1);
 	};
-
-	// distructure comments from selectedArtwork
-	const { comments } = selectedArtwork;
 
 	return (
 		<>
