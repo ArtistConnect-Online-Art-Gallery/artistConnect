@@ -29,7 +29,6 @@ export const createCommentAction = createAsyncThunk(
 				},
 			};
 			const { data } = await axios.post(`${baseURL}/comments/${id}`, { content, id }, config);
-			dispatch(fetchCommentsByArtworkId({ id }));
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -82,7 +81,6 @@ const commentsSlice = createSlice({
 			state.loading = false;
 			state.comment = null;
 			state.isAdded = false;
-			state.error = action.payload;
 		});
 		//Reset err
 		builder.addCase(resetErrAction.pending, (state, action) => {
