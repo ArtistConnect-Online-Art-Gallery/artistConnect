@@ -78,12 +78,11 @@ const commentsSlice = createSlice({
 		});
 		builder.addCase(fetchCommentsByArtworkId.fulfilled, (state, action) => {
 			state.loading = false;
-
 			state.comments = action.payload.artwork.comments;
 		});
 		builder.addCase(fetchCommentsByArtworkId.rejected, (state, action) => {
 			state.loading = false;
-			state.comment = null;
+			state.comments = null;
 			state.isAdded = false;
 			state.error = action.payload;
 		});
