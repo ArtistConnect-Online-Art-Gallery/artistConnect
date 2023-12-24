@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ChatBubbleOvalLeftEllipsisIcon, ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+	ChatBubbleOvalLeftEllipsisIcon,
+	ExclamationTriangleIcon,
+	ArrowUturnLeftIcon,
+} from '@heroicons/react/24/outline';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { usePopup } from '../hooks/usePopup';
@@ -11,8 +15,12 @@ import { useState } from 'react';
 import baseURL from '../utils/baseURL';
 import { useSelector } from 'react-redux';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+import { fetchCommentsByArtworkId } from '../redux/slices/comments';
+import { useDispatch } from 'react-redux';
 
 export default function ArtworkDetailPage({ artwork }) {
+	const dispatch = useDispatch();
+
 	const { showPopup, openPopup, closePopup } = usePopup();
 	const navigate = useNavigate();
 	const [selectedArtwork, setSelectedArtwork] = useState('');
@@ -37,6 +45,14 @@ export default function ArtworkDetailPage({ artwork }) {
 
 		fetchArtworkById();
 	}, [id]);
+
+	//fetch comments by artwork id
+	useEffect(() => {
+		dispatch(fetchCommentsByArtworkId({ id }));
+	}, [id, dispatch]);
+
+	const comments = useSelector((state) => state.comments.comments);
+	console.log('comments', comments);
 
 	const userToken = useSelector((state) => state.users?.userAuth?.userInfo?.token);
 	const [isFavorited, setIsFavorited] = useState(false);
@@ -99,9 +115,6 @@ export default function ArtworkDetailPage({ artwork }) {
 		navigate(-1);
 	};
 
-	// distructure comments from selectedArtwork
-	const { comments } = selectedArtwork;
-
 	return (
 		<>
 			{' '}
@@ -113,7 +126,7 @@ export default function ArtworkDetailPage({ artwork }) {
 						<img src={selectedArtwork.artworkImg} alt={''} className="h-3/4 object-cover rounded-lg" />
 						{/* X Icon */}
 						<button className="absolute top-0 right-0 mt-2 mr-10" onClick={handleXClick}>
-							<XMarkIcon className="w-6 h-6 text-gray-500" />
+							<ArrowUturnLeftIcon className="w-6 h-6 text-gray-500" />
 						</button>
 						{/* Exclamation Icon */}
 						<button className="absolute top-0 right-0 mt-2 mr-2" onClick={handleReportClick}>
