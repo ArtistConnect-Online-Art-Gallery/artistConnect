@@ -83,7 +83,6 @@ const commentsSlice = createSlice({
 		builder.addCase(fetchCommentsByArtworkId.rejected, (state, action) => {
 			state.loading = false;
 			state.comments = null;
-			state.isAdded = false;
 			state.error = action.payload;
 		});
 
