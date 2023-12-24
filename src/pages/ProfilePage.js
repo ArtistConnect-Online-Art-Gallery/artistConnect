@@ -1,4 +1,4 @@
-import UserHeader from '../components/UserHeader';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { CheckBadgeIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
@@ -32,7 +32,7 @@ export default function ProfilePage() {
 
 	return (
 		<>
-			<UserHeader />
+			<Header />
 
 			{showFileForm && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-filter backdrop-blur-lg flex justify-center items-center">

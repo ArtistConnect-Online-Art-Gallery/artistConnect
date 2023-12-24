@@ -4,7 +4,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileAction } from '../redux/slices/users';
 import ArtworksCard from '../components/ArtworksCard';
-import UserHeader from '../components/UserHeader';
+import Header from '../components/Header';
 import galleryimg from '../utils/gallery-img.png';
 const sortOptions = [{ name: 'Favourite Artworks' }, { name: 'My Artworks' }];
 
@@ -25,7 +25,7 @@ export default function Example() {
 	//get my artworks and fav artworks
 	const myArtworks = profile?.user?.artworks || [];
 	const favArtworks = profile?.user?.favArtworks || [];
-	
+
 	const handleFilterClick = (filterName) => {
 		setCurrentFilter(filterName);
 	};
@@ -39,7 +39,7 @@ export default function Example() {
 	}
 	return (
 		<>
-			<UserHeader />
+			<Header />
 			<div className="bg-gray-50">
 				<div
 					className="py-24 bg-cover"
@@ -100,7 +100,7 @@ export default function Example() {
 								// className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
 								className={`inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden ${
 									open ? 'open-styles' : '' // Add or remove styles based on the 'open' state
-								 }`}								
+								}`}
 								onClick={() => setOpen(true)}>
 								Filters
 							</button>
