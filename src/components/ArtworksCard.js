@@ -6,15 +6,15 @@ import { usePopup } from '../hooks/usePopup';
 import baseURL from '../utils/baseURL';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';  
+import { useEffect, useState } from 'react';
 
-export default function ArtworksCard({ artwork }) { 
+export default function ArtworksCard({ artwork }) {
 	const { showPopup, openPopup, closePopup } = usePopup();
 	const userToken = useSelector((state) => state.users?.userAuth?.userInfo?.token);
 
 	const { artworkImg, title, description, id } = artwork;
-	const [isFavorited, setIsFavorited] = useState(false); 
-	const [isReported, setIsReported] = useState(false); 
+	const [isFavorited, setIsFavorited] = useState(false);
+	const [isReported, setIsReported] = useState(false);
 
 	useEffect(() => {
 		const storedFavoritedArtworks = JSON.parse(localStorage.getItem('favoritedArtworks')) || {};
@@ -47,72 +47,68 @@ export default function ArtworksCard({ artwork }) {
 			console.error(error);
 			console.error('Response:', error.response);
 		}
-	}; 
+	};
 
 	const handleReportClick = async () => {
 		try {
-		  const config = {
-			headers: {
-			  Authorization: `Bearer ${userToken}`,
-			  'Content-Type': 'application/json',
-			},
-		  };
-	
-		  const payload = {
-			artworkId: id,
-		  };
-	
-		  await axios.post(`${baseURL}/artworks/${id}/report`, payload, config);
-		  setIsReported(true); 
+			const config = {
+				headers: {
+					Authorization: `Bearer ${userToken}`,
+					'Content-Type': 'application/json',
+				},
+			};
+
+			const payload = {
+				artworkId: id,
+			};
+
+			await axios.post(`${baseURL}/artworks/${id}/report`, payload, config);
+			setIsReported(true);
 		} catch (error) {
-		  console.error(error);
-		
-	  };
-	}; 
+			console.error(error);
+		}
+	};
 
 	return (
-		<>
-			<div key={id} className="group relative mb-4">
-				<img src={artworkImg} alt="" className="w-full h-auto object-cover rounded-lg" />
+		<div key={id} className="group relative mb-4">
+			<div className="relative">
+				<img src={artworkImg} alt={title} className="w-full h-auto object-cover rounded-lg" />
+
 				<div className="absolute top-0 right-0 mt-2 mr-2">
 					<button onClick={handleReportClick}>
-            			{isReported ? ( 
-						<ExclamationTriangleIcon className="w-6 h-6 text-yellow-500" />
-            			) : (
-						<ExclamationTriangleIcon className="w-6 h-6 text-gray-500 hover:text-yellow-500" />
-            			)}
-         		 	</button>
-				</div>
-				<div className="bg-white bg-opacity-80 py-4 flex justify-between">
-					<button className="text-left">
-						<Link to={`/artworks/${id}`}>
-							<h3 className="text-lg hover:underline font-semibold">{title}</h3>
-						</Link>
-						<p className="text-sm text-gray-500">{artwork.username}</p>
-						<p className="text-sm text-gray-600">{description}</p>
+						{isReported ? (
+							<ExclamationTriangleIcon className="w-6 h-6 text-yellow-500" />
+						) : (
+							<ExclamationTriangleIcon className="w-6 h-6 text-gray-500 hover:text-yellow-500" />
+						)}
 					</button>
+				</div>
 
-					<div className="flex justify-between mt-2">
-						<div className="flex space-x-4">
-							<button
-								onClick={handleFavoriteClick}
-								className="flex items-center space-x-1 text-gray-600 hover:text-pink-600 focus:outline-none">
-								{isFavorited ? (
-									<IoHeart className="w-6 h-6 text-pink-600" />
-								) : (
-									<IoHeartOutline className="w-6 h-6 hover:text-pink-600" />
-								)}
-							</button>
-							<button
-								onClick={openPopup}
-								className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 focus:outline-none">
-								<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6 " />
-							</button>
-							{showPopup && <CommentPopup onClose={closePopup} artworkID={id} />}
-						</div>
-					</div>
+				<div className="absolute bottom-0 right-0 mb-4 mr-4 flex space-x-2">
+					<button onClick={handleFavoriteClick} className="text-gray-600 hover:text-pink-600 focus:outline-none">
+						{isFavorited ? (
+							<IoHeart className="w-6 h-6 text-pink-600" />
+						) : (
+							<IoHeartOutline className="w-6 h-6 hover:text-pink-600" />
+						)}
+					</button>
+					<button onClick={openPopup} className="text-gray-600 hover:text-indigo-600 focus:outline-none">
+						<ChatBubbleOvalLeftEllipsisIcon className="w-6 h-6" />
+					</button>
+				</div>
+
+				{showPopup && <CommentPopup onClose={closePopup} artworkID={id} />}
+			</div>
+
+			<div className="bg-white bg-opacity-80 py-4 px-4 flex justify-between">
+				<div>
+					<Link to={`/artworks/${id}`}>
+						<h3 className="text-lg hover:underline font-semibold">{title}</h3>
+					</Link>
+					<p className="text-sm text-gray-500">{artwork.username}</p>
+					<p className="text-sm text-gray-600">{description}</p>
 				</div>
 			</div>
-		</>
-	); 
-}								
+		</div>
+	);
+}
