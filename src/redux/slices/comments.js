@@ -29,7 +29,7 @@ export const createCommentAction = createAsyncThunk(
 				},
 			};
 			const { data } = await axios.post(`${baseURL}/comments/${id}`, { content, id }, config);
-			dispatch(fetchCommentsByArtworkId());
+			dispatch(fetchCommentsByArtworkId({ id }));
 			return data;
 		} catch (error) {
 			console.log(error);
