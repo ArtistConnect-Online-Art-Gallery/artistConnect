@@ -187,9 +187,7 @@ export default function ArtworkDetailPage({ artwork }) {
 				</div>
 				{/* comment div */}
 				{/* <div className=" w-full   p-8 mt-8 sm:mt-0  "> */}
-				<div
-					className="w-full lg:w-1/2 px-4 py-6 sm:px-6 lg:px-8 xl:block overflow-y-auto"
-					style={{ maxHeight: '50vh' }}>
+				<div className="w-full lg:w-1/2  sm:px-6 lg:px-8 xl:block overflow-y-auto" style={{ maxHeight: '50vh' }}>
 					{comments && comments.length > 0 ? (
 						comments.map((comment) => <CommentCard key={comment.id} comment={comment} />)
 					) : (
