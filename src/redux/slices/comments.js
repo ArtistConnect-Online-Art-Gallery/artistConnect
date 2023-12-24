@@ -44,7 +44,6 @@ export const fetchCommentsByArtworkId = createAsyncThunk(
 	async ({ id }, { rejectWithValue, getState, dispatch }) => {
 		try {
 			const { data } = await axios.get(`${baseURL}/artworks/${id}`, { id });
-			console.log('fetched comments', data);
 			return data;
 		} catch (error) {
 			return rejectWithValue(error?.response?.data);
@@ -62,7 +61,6 @@ const commentsSlice = createSlice({
 		});
 		builder.addCase(createCommentAction.fulfilled, (state, action) => {
 			state.loading = false;
-
 			state.comment = action.payload;
 			state.isAdded = true;
 		});
@@ -79,6 +77,7 @@ const commentsSlice = createSlice({
 		builder.addCase(fetchCommentsByArtworkId.fulfilled, (state, action) => {
 			state.loading = false;
 			state.comments = action.payload.artwork.comments;
+			state.isAdded = false;
 		});
 		builder.addCase(fetchCommentsByArtworkId.rejected, (state, action) => {
 			state.loading = false;
