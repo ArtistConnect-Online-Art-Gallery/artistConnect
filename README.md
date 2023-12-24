@@ -32,7 +32,7 @@ Ensure that the following tools and dependencies are installed if you want to us
 * `cors`is a middleware for Express.js that was used to manage and control access to resources on the server from different domains. It allows or restricts cross-origin HTTP requests, which is essential for security. 
 * `dotenv` Zero-dependency Node.js module that simplifies the process of loading environment variables, managing the configuration settings, API keys, database connection strings, and other sensitive information.
 * `express`is a web application framework for Node.js that helps to simplify the creation of APIs (routes for different HTTP methods) and web servers. 
-* `express-async-handler` handleS asynchronous errors in Express.js middleware and route handlers.
+* `express-async-handler` handles asynchronous errors in Express.js middleware and route handlers.
 
 * `jsonwebtoken` creates and verifies JSON Web Tokens (JWT) used for secure communication between parties.
 
@@ -43,7 +43,7 @@ Ensure that the following tools and dependencies are installed if you want to us
 * `axios` is the library used to make HTTP requests. 
 * `tailwindcss`  utility-first CSS framework, used to styled  the front end. 
 * `reduxjs Version 2.0.1/toolkit ` is an efficient tool to develop, simplify the process of managing state in React applications.
-*`jest-dom Version 5.17.0/testing-library` matchers for validating the state of the DOM in your tests.
+*`jest-dom Version 5.17.0/testing-library` matchers for validating the state of the DOM in our tests.
 
 * `user-event Version 13.5.0/testing-library`
 
