@@ -1,6 +1,6 @@
 import React from 'react';
-import { ExclamationTriangleIcon} from '@heroicons/react/24/outline';
-
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 //
 export default function CommentCard({ comment }) {
 	// Filter comments based on the selected artwork's id
@@ -18,7 +18,13 @@ export default function CommentCard({ comment }) {
 					<ExclamationTriangleIcon className="w-6 h-6 mr-2" />
 				</button>
 				<div className="flex items-start flex-col">
-					<h3 className=" font-medium p-3 text-gray-900">{username}</h3>
+					<h3 className=" font-medium p-3 text-gray-900">
+						<Link
+							className="text-gray-600 font-semibold text-lg  hover:text-indigo-800 transition duration-300 ease-in-out hover:underline"
+							to={`/users/${comment.user?._id}/profile`}>
+							{username}
+						</Link>
+					</h3>
 					<div className="prose prose-sm  max-w-none text-left py-2 p-3 text-gray-500">{content}</div>
 				</div>
 			</div>
