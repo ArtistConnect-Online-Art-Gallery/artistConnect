@@ -72,6 +72,11 @@ const commentsSlice = createSlice({
 			state.error = action.payload;
 		});
 
+		builder.addCase(fetchCommentsByArtworkId.fulfilled, (state, action) => {
+			state.loading = false;
+			state.comments = action.payload.comments;
+		});
+
 		//Reset err
 		builder.addCase(resetErrAction.pending, (state, action) => {
 			state.error = null;
